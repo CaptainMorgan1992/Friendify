@@ -1,10 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
 footer{
     display: flex;
     justify-content:center;
     font-family: 'Montserrat', sans-serif;
     background-color: #B0DAFF;
     margin-top: 1rem;
+    border-radius: 1rem;
 }
 
+body {
+    background-color: rgba($iconColor, 0.05);
+}
 
+footer ul {
+    height: 2rem;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul li {
+    width: 6rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    display: flex;
+}
+
+footer ul a {
+    color: #323238;
+    text-shadow: 3px 3px 2px rgba(29, 29, 31, 0.2);
+}
