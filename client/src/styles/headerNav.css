@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
 header {
     display: flex;
     justify-content: center;
@@ -8,11 +15,13 @@ header {
     border-radius: 1rem;
     padding: 1rem;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-
-
 }
+
 header h1{
     text-decoration: none;
+    letter-spacing: .4rem;
+    /*text-shadow: 3px 3px 2px rgba(234, 160, 146, 0.4);*/
+    text-shadow: 3px 3px 2px rgba(29, 29, 31, 0.2);
 }
 
 
@@ -21,8 +30,11 @@ nav{
     justify-content: space-evenly;
 }
 nav button{
-    background-color: #B0DAFF;
+    background-color: rgba(176, 194, 255, 0.72);
     padding: .5rem;
     margin-top: 1rem;
+    border-radius: 0.5rem;
+    border: 0px solid white;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.09);
 }
 
