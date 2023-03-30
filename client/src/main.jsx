@@ -8,6 +8,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RouterProvider router={
             createBrowserRouter(createRoutesFromElements(
                     <Route path={'/'} element={<App/>}> {/*
+
+Hej
                        <Route index element={<Homepage/>}/>
                         <Route path={'register'} element={<Registrationpage/>}/>
                         <Route path={'login'} element={<Loginpage/>}/>
