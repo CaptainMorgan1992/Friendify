@@ -9,6 +9,7 @@ const userSchema = new Schema ({
     email: String,
     phonenumber: String,
     password: String,
+    city: String,
     admin: {type:Boolean, default: false }
 })
 
@@ -29,6 +30,7 @@ usersRoutes.post('/', async (req, res) => {
     user.name = req.body.name
     user.email = req.body.email
     user.phonenumber = req.body.phonenumber
+    user.city = req.body.city
     user.password = getHash(req.body.password)
 
     await user.save()
