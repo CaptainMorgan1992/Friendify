@@ -5,6 +5,17 @@ import session from "express-session"
 const api = express()
 api.use(express.json())
 
+api.use(session({
+    secret: 'frends_iidsajk282nd',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}))
+
 const username = 'friendify'
 const password = '9gZCRe8Zi6OF6nY0'
 const port = 3000
@@ -25,3 +36,6 @@ api.listen(port,  () =>{
 
 import friendsRoutes from "./routes/friends-routes.js";
 api.use('/api/friends', friendsRoutes)
+
+import userRoutes from "./routes/user-routes.js";
+api.use('/api/users', userRoutes)
