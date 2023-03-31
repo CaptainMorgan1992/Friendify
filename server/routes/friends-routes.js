@@ -33,6 +33,7 @@ friendsRoutes.post('/', async (req,res) => {
 
 friendsRoutes.get('/', async (req,res) =>{
     const friend = await mongoose.models.friends.find()
+    let result = req.db.prepare(friend).all(req.params)
     res.status(200)
     res.json(friend)
 })
