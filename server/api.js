@@ -39,3 +39,7 @@ api.use('/api/friends', friendsRoutes)
 
 import userRoutes from "./routes/user-routes.js";
 api.use('/api/users', userRoutes)
+
+import activitiesRoutes from "./routes/activities-routes.js";
+api.use('/api/activities', activitiesRoutes)
+
