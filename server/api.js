@@ -2,9 +2,8 @@ import express from "express"
 import mongoose from "mongoose";
 import session from "express-session"
 
-
-
 const api = express()
+api.use(express.json())
 
 const username = 'friendify'
 const password = '9gZCRe8Zi6OF6nY0'
