@@ -6,13 +6,30 @@ const friendsRoutes = Router()
 const friendSchema = new Schema({
     name: String,
     age: Number,
-    traits: {},
+    traits: [],
     price: Number,
     picture: String,
     city: String
 })
 
 mongoose.model('friends', friendSchema)
+
+friendsRoutes.post('/', async (req,res) => {
+    const friend = new mongoose.models.friends()
+    friend.name = req.body.name
+    friend.age = req.body.age
+    friend.traits = req.body.traits
+    friend.price = req.body.price
+    friend.picture = req.body.picture
+    friend.city = req.body.city
+
+    console.log(friend)
+    await friend.save();
+
+    res.status(201)
+    res.json(friend)
+
+})
 
 friendsRoutes.get('/', async (req,res) =>{
     const friend = await mongoose.models.friends.find()
