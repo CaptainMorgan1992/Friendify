@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import Startpage from "./pages/Startpage.jsx";
+import Loginpage from "./pages/Loginpage.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -11,9 +12,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             createBrowserRouter(createRoutesFromElements(
                     <Route path={'/'} element={<App/>}>
                         <Route index element={<Startpage/>}/>
+                        <Route path={'login'} element={<Loginpage/>}/>
                         {/*
                         <Route path={'register'} element={<Registrationpage/>}/>
-                        <Route path={'login'} element={<Loginpage/>}/>
+
                         <Route path={'profile'} element={<Profilepage/>}>
                          <Route path={'userprofile'} element={<Userprofilepage/>}/>
                          <Route path={'adminprofile'} element={<Adminprofilepage/>}/>
