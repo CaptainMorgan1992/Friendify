@@ -37,7 +37,6 @@ loginRoutes.get('/', async (req,res)=>{
 
 
     }
-        res.status(404)
         res.json({"loggedIn":false})
 })
 

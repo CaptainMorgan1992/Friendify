@@ -1,0 +1,9 @@
+form button {
+    display: flex;
+    padding: .5rem;
+    border-radius: 0.5rem;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.09);
+    margin: 0 auto 10px auto;
+    background-color: #B0DAFF;
+
+}
