@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
 import GlobalContext from "../../GlobalContext.jsx";
+import {Link} from "react-router-dom";
 
 export default function () {
     const {activities, setActivities} = useContext(GlobalContext)
@@ -15,7 +16,9 @@ export default function () {
             }
         </select>
         <div id="button-div">
+            <Link to ="/userconfirmation">
             <button className={"booking-confirmation-button"}> Hire friend</button>
+            </Link>
         </div>
 
     </div>
