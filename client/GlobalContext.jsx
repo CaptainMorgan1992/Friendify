@@ -5,9 +5,10 @@ export const GlobalProvider = ({ children }) => {
 
     const [friends, setFriends] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
+
     useEffect(() => {
-        void loadFriends()
         void checkAuth()
+        void loadFriends()
     }, [])
 
     const loadFriends = async (id) => {
@@ -30,11 +31,12 @@ export const GlobalProvider = ({ children }) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
         })
+        void checkAuth()
     }
 
     const logout = async () => {
         const response = await fetch('/api/login', {
-            method: "delete"
+            method: "DELETE"
         })
         const result = await response.json()
         console.log(result)

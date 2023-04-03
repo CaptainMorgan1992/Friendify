@@ -6,20 +6,23 @@ import GlobalContext from "../../GlobalContext.jsx";
 
 export default function (){
     const {auth} = useContext(GlobalContext)
+    console.log(ShowLogoutButton())
 
     return <nav id={"navigation"}>
         <button>Our policy</button>
         <button>Rent a friend</button>
-        <ShowLogoutButton/>
+        <Link to={'/login'}> <ShowLogoutButton/> </Link>
     </nav>
 
-    function ShowLogoutButton () {
-        if (auth.loggedIn) return <LogoutButton/>
+    function ShowLogoutButton() {
+        if (auth.loggedIn === true) return <LogoutButton/>
 
-        else if (!auth.loggedIn)
-            return <>
-            <Link to={'/login'}>  <button>Log in</button> </Link>
+        else return <>
+            <Link to="/login">
+                <button id="login-button">Log in</button>
+            </Link>
         </>
+
     }
 }
 
