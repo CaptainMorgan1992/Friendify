@@ -15,12 +15,26 @@ export const GlobalProvider = ({ children }) => {
         console.log(result)
         setFriends(result)
     }
+    const [activities, setActivities] = useState([])
+    useEffect(() => {
+        void loadActivities()
+    }, [])
+
+    const loadActivities = async (id) => {
+        const response = await fetch("/api/activities/")
+        const result = await response.json()
+        console.log(response)
+        console.log(result)
+        setActivities(result)
+    }
 
 
     return (
         <GlobalContext.Provider value={{
             friends,
             setFriends,
+            activities,
+            setActivities
         }} >
             {children}
         </GlobalContext.Provider>

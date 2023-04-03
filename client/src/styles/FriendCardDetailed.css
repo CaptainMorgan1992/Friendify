@@ -1,0 +1,51 @@
+/*
+
+return <div id={'detailed-friend-card'}>
+        <h2>{name}</h2>
+        <img id="detailedPicture" src={picture}/>
+        <p id="ageParagraph">{age}</p>
+        <p id="cityParagraph">{city}</p>
+        <p id="priceParagraph">{price}</p>
+        <p id="traitsParagraph">{traits}</p>
+    </div>
+ */
+
+#detailed-friend-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#detailedPicture {
+    width: 80px;
+    height: 80px;
+}
+
+#ageParagraph {
+
+}
+
+#cityParagraph {
+
+}
+
+#priceParagraph {
+
+}
+
+#traitsParagraph {
+ letter-spacing: 0.1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
