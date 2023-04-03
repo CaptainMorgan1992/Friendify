@@ -1,4 +1,4 @@
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 

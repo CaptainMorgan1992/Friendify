@@ -43,6 +43,17 @@ export const GlobalProvider = ({ children }) => {
         setAuth({loggedIn: false})
     }
 
+    const updateInfo = async (id, email, password) => {
+        const response = await fetch('/api/users/password', {
+            method: "PATCH",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({id, email, password})
+        })
+
+        const result = await response.json()
+        console.log(result)
+    }
+
     return (
         <GlobalContext.Provider value={{
             friends,
@@ -50,7 +61,8 @@ export const GlobalProvider = ({ children }) => {
             auth,
             setAuth,
             submitLogin,
-            logout
+            logout,
+            updateInfo
         }} >
             {children}
         </GlobalContext.Provider>
