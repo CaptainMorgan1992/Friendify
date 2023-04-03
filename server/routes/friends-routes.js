@@ -1,5 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import Router from "express";
+import usersRoutes from "./user-routes.js";
 
 const friendsRoutes = Router()
 
@@ -31,9 +32,13 @@ friendsRoutes.post('/', async (req,res) => {
 
 })
 
+friendsRoutes.get('/:id', async (req, res) => {
+    const friend = await mongoose.models.friends.findById(req.params.id)
+    res.json(friend)
+})
 friendsRoutes.get('/', async (req,res) =>{
     const friend = await mongoose.models.friends.find()
-    let result = req.db.prepare(friend).all(req.params)
+    console.log(friend)
     res.status(200)
     res.json(friend)
 })

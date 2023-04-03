@@ -4,26 +4,28 @@ const GlobalContext = createContext(null)
 export const GlobalProvider = ({ children }) => {
 
     const [friends, setFriends] = useState([])
-
     useEffect(() => {
         void loadFriends()
     }, [])
 
-    const loadFriends = async () => {
-        const response = await fetch("/api/friends")
+    const loadFriends = async (id) => {
+        const response = await fetch("/api/friends/")
         const result = await response.json()
         console.log(response)
         console.log(result)
         setFriends(result)
     }
 
+
     return (
         <GlobalContext.Provider value={{
             friends,
-            setFriends
+            setFriends,
         }} >
             {children}
         </GlobalContext.Provider>
     )
 }
 
+
+export default GlobalContext;
