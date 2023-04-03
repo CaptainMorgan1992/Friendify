@@ -43,3 +43,5 @@ api.use('/api/users', userRoutes)
 import activitiesRoutes from "./routes/activities-routes.js";
 api.use('/api/activities', activitiesRoutes)
 
+import loginRoutes from "./routes/login-routes.js";
+api.use('/api/login', loginRoutes)

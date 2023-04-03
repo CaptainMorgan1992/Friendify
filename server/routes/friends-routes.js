@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import Router from "express";
-import usersRoutes from "./user-routes.js";
+
 
 const friendsRoutes = Router()
 
@@ -41,5 +41,10 @@ friendsRoutes.get('/', async (req,res) =>{
     console.log(friend)
     res.status(200)
     res.json(friend)
+})
+
+friendsRoutes.delete('/:id', async (req,res)=>{
+  await mongoose.models.friends.findByIdAndDelete(req.params.id)
+    res.json({"deleted": true})
 })
 export default friendsRoutes
