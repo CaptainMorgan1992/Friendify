@@ -1,14 +1,16 @@
 import {useContext} from "react";
 import GlobalContext from "../../GlobalContext.jsx";
-import {Link,} from "react-router-dom";
+import {Link, useNavigate, useParams,} from "react-router-dom";
 import React from "react"
 
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
     const {order} = useContext(GlobalContext)
+    const {auth} = useContext(GlobalContext)
     const {friends} = useContext(GlobalContext)
-
+    const nav = useNavigate()
+    //const id = useParams().id
     return <HireAFriend/>
 
 
@@ -27,9 +29,7 @@ export default function ({details}) {
             <div id="standing-area">
                 <DropDownMenu/>
                 <div id="button-div">
-                    <Link to={'/userconfirmation'}>
-                        <button onClick={hireFriend} type={"submit"} className={"booking-confirmation-button"}>Hire friend</button>
-                    </Link>
+                        <button disabled={false} onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
                 </div>
             </div>
         </div>
@@ -47,11 +47,11 @@ export default function ({details}) {
         order.push(e.target.value)
         console.log(order)
     }
-    function hireFriend(e){
-        for(let i = 0; i<friends.length; i++){
-            let friend = friends[i]
-            order.push(friend)
+    function hireFriend(details){
+        if(auth.loggedIn){
+            order.push(details)
             console.log(order)
+            nav('/userconfirmation')
         }
 
     }

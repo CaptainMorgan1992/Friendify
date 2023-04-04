@@ -13,10 +13,8 @@ export const GlobalProvider = ({ children }) => {
     }, [])
 
     const loadFriends = async () => {
-        const response = await fetch("/api/friends/")
-        console.log(response)
+        const response = await fetch("/api/friends")
         const result = await response.json()
-        console.log(result)
         setFriends(result)
     }
 

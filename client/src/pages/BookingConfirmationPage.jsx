@@ -10,6 +10,11 @@ export default function () {
         {
             order.map(orders => <FriendCardDetailed details={orders}/>)//Ask about friends ID
         }
+
+
+
+
+
         <div id={'confirmation-div'}>
             <h2>Booking confirmed!</h2>
             <img id={'confirmation-image'} src="https://i.pinimg.com/736x/02/d8/c8/02d8c89ffe273e093d06036f49ed8302.jpg" alt=""/>
