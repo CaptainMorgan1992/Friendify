@@ -9,7 +9,6 @@ import RadioButtonOptions from "./RadioButtonOptions.jsx";
 export default function ({details}) {
     const {name, age, picture, city, id, traits, price} = details;
     const {friends} = useContext(GlobalContext)
-    console.log({price})
     return <div id={'detailed-friend-card'}>
         <h2>{name}</h2>
         <img id="detailedPicture" src={picture}/>

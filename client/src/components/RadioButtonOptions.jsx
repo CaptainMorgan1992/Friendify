@@ -3,27 +3,40 @@ import GlobalContext from "../../GlobalContext.jsx";
 import {Link} from "react-router-dom";
 
 export default function () {
-    const {activities, setActivities} = useContext(GlobalContext)
-
+    const {activity, setActivity} = useContext(GlobalContext)
+    const {friends} = useContext(GlobalContext)
     return <div id="standing-area">
-        <label>Choose an activity </label>
-        <select value={activities} onChange={(e) => {
-            const selectedValue = e.target.value;
-            setActivities(selectedValue)
-        }}>
-            {
-                activities.map(activity => <option value={activity.title}>{activity.title}</option>)
-            }
-        </select>
+      <DropDownMenu/>
         <div id="button-div">
-            <Link to ="/userconfirmation">
-            <button className={"booking-confirmation-button"}> Hire friend</button>
+            <Link to={'/userconfirmation'}>
+            <button onClick={hireFriend} type={"submit"} className={"booking-confirmation-button"}>Hire friend</button>
             </Link>
         </div>
-
     </div>
-
+    function DropDownMenu(){
+        return <select onChange={chooseActivity}>
+                <option>Select a value</option>
+                <option>Fika</option>
+                <option>Simma</option>
+                <option>Springa</option>
+        </select>
+    }
+    function chooseActivity(e){
+        e.preventDefault()
+        activity.push(e.target.value)
+        console.log(activity)
+    }
+    function hireFriend(){
+        console.log("testtestesttest")
+        activity.push(friends.name)
+        console.log(activity)
+    }
 }
+
+
+
+
+
 
 
 /*
