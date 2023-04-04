@@ -8,7 +8,9 @@ export default function (){
     const {auth} = useContext(GlobalContext)
 
     return <nav id={"navigation"}>
+        <Link to={'/policy'}>
         <button>Our policy</button>
+        </Link>
         <button>Rent a friend</button>
         <ShowProfile/>
         <ShowLogoutButton/>
