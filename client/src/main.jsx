@@ -4,6 +4,7 @@ import App from './App'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import Startpage from "./pages/Startpage.jsx";
 import Loginpage from "./pages/Loginpage.jsx";
+import OurPoliciesPage from "./pages/OurPoliciesPage.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route path={'/'} element={<App/>}>
                         <Route index element={<Startpage/>}/>
                         <Route path={'login'} element={<Loginpage/>}/>
+                        <Route path={'policy'} element={<OurPoliciesPage/>}/>
                         {/*
                         <Route path={'register'} element={<Registrationpage/>}/>
 
