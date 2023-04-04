@@ -21,7 +21,11 @@ export default function (){
 
         else return <>
             <Link to="/login">
-                <button id="login-button">Log in</button>
+                <button>Log in</button>
+            </Link>
+
+            <Link to="/register">
+                <button>Register</button>
             </Link>
         </>
 
