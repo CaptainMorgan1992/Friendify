@@ -7,15 +7,15 @@
     font-size: 0.8rem;
 }
 
-h1 {
+.policies-h1 {
     margin-bottom: 1%;
 }
 
-h2 {
+.policies-h2 {
     margin: 2%;
 }
 
-p {
+.policies-paragraph {
     margin: 2%;
     padding: 5%;
     border-radius: 1rem;
