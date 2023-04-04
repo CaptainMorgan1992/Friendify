@@ -43,6 +43,14 @@ friendsRoutes.get('/', async (req,res) =>{
     res.json(friend)
 })
 
+friendsRoutes.patch('/:id', async(req, res) => {
+    const friend = await mongoose.models.friends.findByIdAndUpdate(req.params.id, req.body)
+    if(!friend) {
+        return res.status(404).json({message: "Friend not found"})
+    }
+    res.json({"updated": true})
+})
+
 friendsRoutes.delete('/:id', async (req,res)=>{
   await mongoose.models.friends.findByIdAndDelete(req.params.id)
     res.json({"deleted": true})
