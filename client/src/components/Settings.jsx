@@ -2,26 +2,38 @@ import {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
 export default function () {
-    const {updateInfo} = useContext(GlobalContext)
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("")
-    const fetchupdateInfo = (e) => {
+   // const {updateInfo} = useContext(GlobalContext)
+    const [currentPassword, setCurrentPassword] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+
+
+    const updatePassword = (e) => {
         e.preventDefault()
-        updateInfo(password)
+        console.log('FUNGERAR DETTA')
     }
 
-    return<form onSubmit={fetchupdateInfo}>
 
-        <input placeholder={'example@example.com'}
-               type={'email'}
-               value={email}
-               onChange={e => setEmail(e.target.value)}/>
 
-        <input placeholder={'********'}
+    return <form onSubmit={updatePassword}>
+
+        <input placeholder={'Current Password'}
                type={'password'}
-               value={password}
-               onChange={e => setPassword(e.target.value)}/>
+               value={currentPassword}
+               onChange={e => setCurrentPassword(e.target.value)}/>
 
-        <button>Log In</button>
+        <input placeholder={'New Password'}
+               type={'password'}
+               value={newPassword}
+               onChange={e => setNewPassword(e.target.value)}/>
+
+        <input placeholder={'Confirm New Password'}
+               type={'password'}
+               value={confirmNewPassword}
+               onChange={e => setConfirmNewPassword(e.target.value)}/>
+
+        <button type={'submit'}>Update Password</button>
+
     </form>
+
 }

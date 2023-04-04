@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export default function () {
     return <>
-        <Link to={'settings'}>
+        <Link to={'/settings'}>
             <button>Settings</button>
         </Link>
         <Orders/>
