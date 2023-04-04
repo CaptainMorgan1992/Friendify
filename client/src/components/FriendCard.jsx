@@ -1,6 +1,6 @@
 import friends from "./Friends.jsx";
 import {useContext} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 import {json} from "react-router-dom";
 
 
