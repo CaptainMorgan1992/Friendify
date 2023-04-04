@@ -17,6 +17,18 @@ export const GlobalProvider = ({ children }) => {
         console.log(result)
         setFriends(result)
     }
+    const [activities, setActivities] = useState([])
+    useEffect(() => {
+        void loadActivities()
+    }, [])
+
+    const loadActivities = async (id) => {
+        const response = await fetch("/api/activities/")
+        const result = await response.json()
+        console.log(response)
+        console.log(result)
+        setActivities(result)
+    }
 
     const checkAuth = async () => {
         const response = await fetch("/api/login")
@@ -50,7 +62,9 @@ export const GlobalProvider = ({ children }) => {
             auth,
             setAuth,
             submitLogin,
-            logout
+            logout,
+			 activities,
+            setActivities
         }} >
             {children}
         </GlobalContext.Provider>

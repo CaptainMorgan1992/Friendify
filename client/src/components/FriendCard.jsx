@@ -12,7 +12,5 @@ export default function ({details}) {
         <img src={picture}/>
         <p>{age}</p>
         <p>{city}</p>
-
-
     </div>
 }

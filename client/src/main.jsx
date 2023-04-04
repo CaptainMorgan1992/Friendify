@@ -4,6 +4,8 @@ import App from './App'
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from "react-router-dom";
 import Startpage from "./pages/Startpage.jsx";
 import Loginpage from "./pages/Loginpage.jsx";
+import RentAFriendPage from "./pages/RentAFriendPage.jsx";
+import UserConfirmationPage from "./pages/BookingConfirmationPage.jsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -13,17 +15,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route path={'/'} element={<App/>}>
                         <Route index element={<Startpage/>}/>
                         <Route path={'login'} element={<Loginpage/>}/>
+						<Route path={'friends'} element={<RentAFriendPage/>}/>
+                        <Route path={'userconfirmation'} element={<UserConfirmationPage/>}/>
                         {/*
                         <Route path={'register'} element={<Registrationpage/>}/>
-
                         <Route path={'profile'} element={<Profilepage/>}>
                          <Route path={'userprofile'} element={<Userprofilepage/>}/>
                          <Route path={'adminprofile'} element={<Adminprofilepage/>}/>
                         </Route>
                         <Route path={'friends'} element={<Friendspage/>}/>
-
                            <Route path={'userrequest'} element={<Userrequestpage/>}/>
-                           <Route path={'userconfirmation'} element={<UserConfirmationpage/>}/>
                          <Route path={'companyconfirmation'} element={<CompanyConfirmationpage/>}/>
                         </Route>*/}
                     </Route>

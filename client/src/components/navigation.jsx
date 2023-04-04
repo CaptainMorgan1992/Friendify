@@ -10,7 +10,9 @@ export default function (){
 
     return <nav id={"navigation"}>
         <button>Our policy</button>
+		<Link to="/friends">
         <button>Rent a friend</button>
+ 		</Link>
         <Link to={'/login'}> <ShowLogoutButton/> </Link>
     </nav>
 

@@ -14,7 +14,6 @@ export default function (){
 
         {
             friends.map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
-
         }
 
     </div>
