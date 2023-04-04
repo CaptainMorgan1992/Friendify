@@ -6,33 +6,18 @@ export const GlobalProvider = ({ children }) => {
     const [friends, setFriends] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
 
-
-
-
-
-    const [activity, setActivity] = useState([])
+    const [order, setOrder] = useState([])
     useEffect(() => {
         void checkAuth()
         void loadFriends()
     }, [])
 
-    const loadFriends = async (id) => {
+    const loadFriends = async () => {
         const response = await fetch("/api/friends/")
+        console.log(response)
         const result = await response.json()
         console.log(result)
         setFriends(result)
-    }
-    const [activities, setActivities] = useState([])
-    useEffect(() => {
-        void loadActivities()
-    }, [])
-
-    const loadActivities = async (id) => {
-        const response = await fetch("/api/activities/")
-        const result = await response.json()
-        console.log(response)
-        console.log(result)
-        setActivities(result)
     }
 
     const checkAuth = async () => {
@@ -72,11 +57,9 @@ export const GlobalProvider = ({ children }) => {
             setAuth,
             submitLogin,
             logout,
-			 activities,
-            setActivities,
-            activity,
-            setActivity
-        }} >
+            order,
+            setOrder
+        }}>
             {children}
         </GlobalContext.Provider>
     )
