@@ -9,7 +9,9 @@ export default function (){
     console.log(ShowLogoutButton())
 
     return <nav id={"navigation"}>
+        <Link to={'/policy'}>
         <button>Our policy</button>
+        </Link>
         <button>Rent a friend</button>
         <Link to={'/login'}> <ShowLogoutButton/> </Link>
     </nav>
