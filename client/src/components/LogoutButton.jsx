@@ -1,6 +1,6 @@
 import '../styles/logoutButton.css'
 import {useContext} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 
 export default function () {
     const {logout} = useContext(GlobalContext)

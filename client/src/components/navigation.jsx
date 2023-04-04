@@ -1,19 +1,19 @@
 import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton.jsx";
 import {useContext} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 
 
 export default function (){
     const {auth} = useContext(GlobalContext)
-    console.log(ShowLogoutButton())
 
     return <nav id={"navigation"}>
         <Link to={'/policy'}>
         <button>Our policy</button>
         </Link>
         <button>Rent a friend</button>
-        <Link to={'/login'}> <ShowLogoutButton/> </Link>
+        <ShowProfile/>
+        <ShowLogoutButton/>
     </nav>
 
     function ShowLogoutButton() {
@@ -25,6 +25,14 @@ export default function (){
             </Link>
         </>
 
+    }
+
+    function ShowProfile () {
+        if(!auth.loggedIn) return null
+
+        else return <Link to={'/profile'}>
+            <button>Profile</button>
+        </Link>
     }
 }
 

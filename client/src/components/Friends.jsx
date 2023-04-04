@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 import FriendCard from "./FriendCard.jsx";
 import {useParams} from "react-router-dom";
 
