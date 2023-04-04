@@ -10,6 +10,7 @@ export default function (){
     return <nav id={"navigation"}>
         <button>Our policy</button>
         <button>Rent a friend</button>
+        <ShowProfile/>
         <ShowLogoutButton/>
     </nav>
 
@@ -22,6 +23,14 @@ export default function (){
             </Link>
         </>
 
+    }
+
+    function ShowProfile () {
+        if(!auth.loggedIn) return null
+
+        else return <Link to={'/profile'}>
+            <button>Profile</button>
+        </Link>
     }
 }
 

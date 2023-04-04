@@ -10,11 +10,17 @@ export default function () {
         updateInfo(password)
     }
 
-    return <form onSubmit={fetchupdateInfo} >
+    return<form onSubmit={fetchupdateInfo}>
 
-        <input placeholder={'example@example.com'} type={'email'} value={email} onChange={e => setEmail(e.target.value)}/>
+        <input placeholder={'example@example.com'}
+               type={'email'}
+               value={email}
+               onChange={e => setEmail(e.target.value)}/>
 
-        <input placeholder={'********'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}/>
+        <input placeholder={'********'}
+               type={'password'}
+               value={password}
+               onChange={e => setPassword(e.target.value)}/>
 
         <button>Log In</button>
     </form>

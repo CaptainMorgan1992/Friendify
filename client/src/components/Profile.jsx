@@ -1,10 +1,12 @@
 import Orders from "./Orders.jsx";
+import {Link} from "react-router-dom";
 
 export default function () {
     return <>
-        <button>Settings</button>
+        <Link to={'settings'}>
+            <button>Settings</button>
+        </Link>
         <Orders/>
-
     </>
 
 }
