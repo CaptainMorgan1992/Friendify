@@ -11,7 +11,9 @@ export default function (){
         <Link to={'/policy'}>
         <button>Our policy</button>
         </Link>
+        <Link to={'/friends'}>
         <button>Rent a friend</button>
+        </Link>
         <ShowProfile/>
         <ShowLogoutButton/>
     </nav>

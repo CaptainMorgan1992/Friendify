@@ -1,7 +1,7 @@
-import {useContext, useEffect, useState} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import React, {useContext, useEffect, useState} from "react";
 import FriendCard from "../components/FriendCard.jsx";
 import "../styles/bookingconfirmation.css"
+import GlobalContext from "../GlobalContext.jsx";
 import FriendCardDetailed from "../components/FriendCardDetailed.jsx";
 
 export default function () {
@@ -10,8 +10,6 @@ export default function () {
         {
             order.map(orders => <FriendCardDetailed details={orders}/>)//Ask about friends ID
         }
-
-
 
 
 

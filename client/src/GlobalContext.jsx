@@ -78,7 +78,7 @@ export const GlobalProvider = ({children}) => {
             submitLogin,
             logout,
    			order,
-            setOrder
+            setOrder,
             register
         }}>
             {children}
