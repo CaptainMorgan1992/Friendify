@@ -1,7 +1,8 @@
 import {useContext} from "react";
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 import FriendCard from "./FriendCard.jsx";
 import {useParams} from "react-router-dom";
+import "../styles/friendCardStartpage.css"
 
 export default function (){
     const {friends} = useContext(GlobalContext)
@@ -10,9 +11,11 @@ export default function (){
     //console.log(findFriend)
 
 
-    return <div>
+    return <div id={"friend-card-wrapper"}>
+
         {
-            friends.map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
+            friends.splice(0,3).map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
+
         }
     </div>
 }

@@ -1,4 +1,4 @@
-import GlobalContext from "../../GlobalContext.jsx";
+import GlobalContext from "../GlobalContext.jsx";
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -19,9 +19,15 @@ export default function () {
 
     return <form onSubmit={fetchUser} >
 
-        <input placeholder={'example@example.com'} type={'email'} value={email} onChange={e => setEmail(e.target.value)}/>
+        <input placeholder={'example@example.com'}
+               type={'email'}
+               value={email}
+               onChange={e => setEmail(e.target.value)}/>
 
-        <input placeholder={'********'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}/>
+        <input placeholder={'********'}
+               type={'password'}
+               value={password}
+               onChange={e => setPassword(e.target.value)}/>
 
         <button>Log In</button>
     </form>

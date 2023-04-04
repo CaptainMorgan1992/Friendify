@@ -1,0 +1,28 @@
+#Policies-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2% 15%;
+    font-size: 0.8rem;
+}
+
+.policies-h1 {
+    margin-bottom: 1%;
+}
+
+.policies-h2 {
+    margin: 2%;
+}
+
+.policies-paragraph {
+    margin: 2%;
+    padding: 5%;
+    border-radius: 1rem;
+    border: 1px solid #e7e7e7;
+    background-color: #e3e2e2;
+    box-shadow: 2px 2px 2px rgb(212, 191, 250);
+    margin: 5%;
+    line-height: 170%;
+    text-align: center;
+}
