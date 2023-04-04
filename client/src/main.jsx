@@ -6,6 +6,7 @@ import Startpage from "./pages/Startpage.jsx";
 import Loginpage from "./pages/Loginpage.jsx";
 import Profile from "./components/Profile.jsx";
 import Settings from "./components/Settings.jsx";
+import OurPoliciesPage from "./pages/OurPoliciesPage.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         <Route path={'login'} element={<Loginpage/>}/>
                         <Route path={'profile'} element={<Profile/>}/>
                         <Route path={'settings'} element={<Settings/>}/>
+                        <Route path={'policy'} element={<OurPoliciesPage/>}/>
 
                         <Route/>
 
