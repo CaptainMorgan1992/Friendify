@@ -4,7 +4,7 @@ export default function () {
 
     return <div id={"Policies-div"}>
 
-        <h1 id={"policies-h1"}>Our Policies</h1>
+        <h1 id="policies-h1">Our Policies</h1>
         <p className={"policies-paragraph"}>Friendify is a website that allows you to rent local Friends from all over Sweden. You can rent a local Friend to hang out with, go to a movie, a walk or a "fika" with.
             Rent a friend to teach you a new skill or hobby, or to show you around an unfamiliar town.
 
