@@ -45,8 +45,18 @@ export const GlobalProvider = ({children}) => {
     }
 
     const register = async (name, email, phonenumber, password, city) => {
-        const response = await fetch("/api/users", {
+        const response = await fetch(`/api/users`, {
             method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, email, phonenumber, password, city})
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
+    const updateInfo = async (name, email, phonenumber, password, city) => {
+        const response = await fetch(`/api/users/`, {
+            method: "PATCH",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name, email, phonenumber, password, city})
         })
@@ -74,7 +84,8 @@ export const GlobalProvider = ({children}) => {
             setAuth,
             submitLogin,
             logout,
-            register
+            register,
+            updateInfo
         }}>
             {children}
         </GlobalContext.Provider>

@@ -43,7 +43,7 @@ usersRoutes.delete('/:id', async (req, res) => {
     res.json(user)
 })
 
-usersRoutes.patch('/:id', async (req, res) => {
+usersRoutes.patch('/', async (req, res) => {
     const user = await mongoose.models.users.findByIdAndUpdate(req.params.id, req.body)
     if(!user) {
         return res.status(404).json({message: "User not found"})
