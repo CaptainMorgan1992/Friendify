@@ -1,17 +1,18 @@
-import  { createContext, useState, useEffect } from "react"
+import {createContext, useState, useEffect} from "react"
 
 const GlobalContext = createContext(null)
-export const GlobalProvider = ({ children }) => {
+export const GlobalProvider = ({children}) => {
 
     const [friends, setFriends] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
+
 
     useEffect(() => {
         void checkAuth()
         void loadFriends()
     }, [])
 
-    const loadFriends = async (id) => {
+    const loadFriends = async () => {
         const response = await fetch("/api/friends/")
         const result = await response.json()
         console.log(result)
@@ -26,7 +27,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     const submitLogin = async (email, password) => {
-        const response =  await fetch("/api/login", {
+        const response = await fetch("/api/login", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
@@ -43,16 +44,27 @@ export const GlobalProvider = ({ children }) => {
         setAuth({loggedIn: false})
     }
 
-    const updateInfo = async (id, email, password) => {
-        const response = await fetch('/api/users/password', {
-            method: "PATCH",
+    const register = async (name, email, phonenumber, password, city) => {
+        const response = await fetch("/api/users", {
+            method: "POST",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({id, email, password})
+            body: JSON.stringify({name, email, phonenumber, password, city})
         })
-
         const result = await response.json()
         console.log(result)
     }
+
+
+    /* const updatePassword = async () => {
+         const response = await fetch(`/api/users/${userId}/password`, {
+             method: 'PATCH',
+             headers: {'Content-Type': 'application/json'},
+             body: JSON.stringify({oldPassword, newPassword}),
+         });
+
+         const result = await response.json()
+         console.log(result)
+     }*/
 
     return (
         <GlobalContext.Provider value={{
@@ -62,8 +74,8 @@ export const GlobalProvider = ({ children }) => {
             setAuth,
             submitLogin,
             logout,
-            updateInfo
-        }} >
+            register
+        }}>
             {children}
         </GlobalContext.Provider>
     )

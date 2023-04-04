@@ -1,26 +1,29 @@
 import {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
-export default function () {
-   // const {updateInfo} = useContext(GlobalContext)
-    const [currentPassword, setCurrentPassword] = useState('');
+export default function ({userId}) {
+    const {updatePassword} = useContext(GlobalContext)
+    const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
 
-    const updatePassword = (e) => {
+    const updateThePassword = (e) => {
         e.preventDefault()
+        if (newPassword !== confirmPassword) {
+            console.log('Passwords do not match.');
+        }
+        updatePassword()
         console.log('FUNGERAR DETTA')
     }
 
 
-
-    return <form onSubmit={updatePassword}>
+    return <form onSubmit={updateThePassword}>
 
         <input placeholder={'Current Password'}
                type={'password'}
-               value={currentPassword}
-               onChange={e => setCurrentPassword(e.target.value)}/>
+               value={oldPassword}
+               onChange={e => setOldPassword(e.target.value)}/>
 
         <input placeholder={'New Password'}
                type={'password'}
@@ -29,8 +32,8 @@ export default function () {
 
         <input placeholder={'Confirm New Password'}
                type={'password'}
-               value={confirmNewPassword}
-               onChange={e => setConfirmNewPassword(e.target.value)}/>
+               value={confirmPassword}
+               onChange={e => setConfirmPassword(e.target.value)}/>
 
         <button type={'submit'}>Update Password</button>
 
