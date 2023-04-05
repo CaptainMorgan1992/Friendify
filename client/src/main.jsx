@@ -11,7 +11,7 @@ import Register from "./components/Register.jsx";
 import RentAFriendPage from "./pages/RentAFriendPage.jsx";
 
 import UserConfirmationPage from "./pages/UserConfirmationPage.jsx";
-import RegistrationConfirmation from "./pages/RegistrationConfirmation.jsx";
+import RegistrationConfirmation from "./components/RegistrationConfirmation.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <RouterProvider router={
