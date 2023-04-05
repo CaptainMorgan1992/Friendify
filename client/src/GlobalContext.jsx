@@ -3,6 +3,8 @@ import {createContext, useState, useEffect} from "react"
 const GlobalContext = createContext(null)
 export const GlobalProvider = ({children}) => {
 	const [order, setOrder] = useState([])
+    const [activity, setActivity] = useState([])
+    const [duration, setDuration] = useState([])
     const [friends, setFriends] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
 
@@ -79,6 +81,10 @@ export const GlobalProvider = ({children}) => {
             logout,
    			order,
             setOrder,
+            activity,
+            setActivity,
+            duration,
+            setDuration,
             register
         }}>
             {children}

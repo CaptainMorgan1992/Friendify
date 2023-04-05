@@ -7,15 +7,11 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {order, auth, friends} = useContext(GlobalContext)
+    const {order, auth, activity,duration} = useContext(GlobalContext)
 
     const nav = useNavigate()
 
     return <HireAFriend/>
-
-
-
-
 
 
     function HireAFriend(){
@@ -35,20 +31,37 @@ export default function ({details}) {
         </div>
     }
     function DropDownMenu(){
-        return <select onChange={chooseActivity}>
-            <option>Select a value</option>
-            <option>Fika</option>
-            <option>Simma</option>
-            <option>Springa</option>
-        </select>
+        return <div>
+            <select onChange={chooseActivity}>
+                <option>Select a value</option>
+                <option>Walk in a park</option>
+                <option>Swim in a park</option>
+                <option>Study programming</option>
+            </select>
+            <select onChange={chooseDuration}>
+                <option>Select a value</option>
+                <option value={2}>2 hours</option>
+                <option value={4}>4 hours</option>
+            </select>
+        </div>
     }
     function chooseActivity(e){
         e.preventDefault()
-        order.push(e.target.value)
-        console.log(order)
+        activity.push(e.target.value)
+        console.log(activity)
+    }
+    function chooseDuration(e){
+        e.preventDefault()
+        duration.push(e.target.value)
+        console.log(duration)
+        if(duration.includes("2")){
+            console.log("Price change?")
+        } else if(duration.includes("4")){
+            console.log("Price change?")
+        }
     }
     function hireFriend(details){
-        if(!auth.loggedIn){
+        if(auth.loggedIn){
             order.push(details)
             console.log(order)
             nav('/userconfirmation')
