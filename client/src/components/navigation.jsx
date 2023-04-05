@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton.jsx";
 import {useContext} from "react";
 import GlobalContext from "../GlobalContext.jsx";
+import AddFriendButton from "./AddFriendButton.jsx";
 
 
 export default function (){
@@ -16,6 +17,7 @@ export default function (){
         </Link>
         <ShowProfile/>
         <ShowLogoutButton/>
+        <ShowAddFriendButton/>
     </nav>
 
     function ShowLogoutButton() {
@@ -30,6 +32,15 @@ export default function (){
             </Link>
         </>
 
+    }
+
+    function ShowAddFriendButton() {
+        if (auth.loggedIn === true) {
+            return <Link to="/addfriend">
+             <AddFriendButton/>
+            </Link>
+        }
+        else return null
     }
 
     function ShowProfile () {

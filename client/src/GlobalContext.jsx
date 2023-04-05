@@ -57,6 +57,16 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
+    const registerFriend = async (traits, name, age, price, picture, city) => {
+        const response = await fetch("/api/friends", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({traits, name, age, price, picture, city})
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
 
     /* const updatePassword = async () => {
          const response = await fetch(`/api/users/${userId}/password`, {
@@ -79,7 +89,8 @@ export const GlobalProvider = ({children}) => {
             logout,
    			order,
             setOrder,
-            register
+            register,
+            registerFriend
         }}>
             {children}
         </GlobalContext.Provider>

@@ -11,6 +11,7 @@ import Register from "./components/Register.jsx";
 import RentAFriendPage from "./pages/RentAFriendPage.jsx";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage.jsx";
 import RegistrationConfirmation from "./pages/RegistrationConfirmation.jsx";
+import AddFriendPage from "./pages/AddFriendPage.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -26,9 +27,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         <Route path={'registrationconfirmation'} element={<RegistrationConfirmation/>}/>
                         <Route path={'friends'} element={<RentAFriendPage/>}/>
                         <Route path={'userconfirmation'} element={<BookingConfirmationPage/>}/>
+                        <Route path={'addfriend'} element={<AddFriendPage/>}/>
                         <Route/>
 
-                            {/* <Route path={'register'} element={<Registrationpage/>}/>
+
+                            {/*
+                             <Route path={'addfriend'} element={<AddFriendPage/>}/>
                     <Route path={'profile'} element={<Profilepage/>}>
                     <Route path={'userprofile'} element={<Userprofilepage/>}/>
                     <Route path={'adminprofile'} element={<Adminprofilepage/>}/>
