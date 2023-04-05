@@ -2,7 +2,7 @@ import {createContext, useState, useEffect} from "react"
 
 const GlobalContext = createContext(null)
 export const GlobalProvider = ({children}) => {
-	const [order, setOrder] = useState([])
+	const [orders, setOrders] = useState([])
 	const [selectFriend, setSelectFriend] = useState([])
     const [activity, setActivity] = useState([])
     const [duration, setDuration] = useState([])
@@ -16,6 +16,7 @@ export const GlobalProvider = ({children}) => {
         //void checkAuth()  // This code calls the authentication twice. Not needed? /M
         void loadFriends()
         void loadUsers()
+        void loadOrders()
     }, [])
 
     const loadFriends = async () => {
@@ -27,6 +28,13 @@ export const GlobalProvider = ({children}) => {
         const response = await fetch('/api/users')
         const result = await response.json()
         setUsers(result)
+    }
+
+    const loadOrders = async () =>{
+        const response = await fetch('/api/orders')
+        const result = await response.json()
+        setOrders(result)
+        console.log(result)
     }
 
     const checkAuth = async () => {
@@ -106,8 +114,8 @@ export const GlobalProvider = ({children}) => {
             setAuth,
             submitLogin,
             logout,
-   			order,
-            setOrder,
+   			orders,
+            setOrders,
             selectFriend,
             activity,
             setActivity,
