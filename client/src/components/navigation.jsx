@@ -21,7 +21,10 @@ export default function (){
     </nav>
 
     function ShowLogoutButton() {
-        if (auth.loggedIn === true) return <LogoutButton/>
+        if (auth.loggedIn === true) {
+            return <Link to={"/"}>
+            <LogoutButton/>
+            </Link>}
         else return <>
             <Link to="/login">
                 <button>Log in</button>

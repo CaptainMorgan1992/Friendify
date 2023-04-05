@@ -75,7 +75,7 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-    const registerFriend = async (traits, name, age, price, picture, city) => {
+    const registerFriends = async (traits, name, age, price, picture, city) => {
         const response = await fetch("/api/friends", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
