@@ -4,11 +4,11 @@ import Router from "express"
 const ordersRoutes = Router()
 
 const orderSchema = new Schema({
-    friend: {type:mongoose.Types.ObjectId, ref:"friends"},
-    user: {type:mongoose.Types.ObjectId, ref: "users"},
-    activity: String,
-    location: String,
-    duration: String
+    friend: [],
+    user: [],
+    activity: [],
+    location: [], //Exists in the friend
+    confirmed: {type:Boolean, default:false}
 })
 
 mongoose.model('orders', orderSchema)
@@ -30,15 +30,22 @@ ordersRoutes.get('/', async (req, res) => {
     const order = await mongoose.models.orders.find().populate('friend').populate('user').exec()
     res.json(order)
 })
+
+ordersRoutes.get('/', async (req, res) => {
+    const order = await mongoose.models.orders.find({confirmed:false})
+    res.json(order)
+})
 ordersRoutes.get('/', async (req, res) => {
     const order = await mongoose.models.orders.find()
     res.json(order)
 })
 
+
 ordersRoutes.get('/:id', async (req, res) => {
     const order = await mongoose.models.orders.findById(req.params.id)
     res.json(order)
 })
+
 ordersRoutes.put('/:id', async (req, res) => {
     const order = await mongoose.models.orders.findByIdAndUpdate(req.params.id, req.body)
     res.json({"updated": "order"})
