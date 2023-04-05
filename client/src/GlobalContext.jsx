@@ -13,7 +13,7 @@ export const GlobalProvider = ({children}) => {
 
 
     useEffect(() => {
-        void checkAuth()
+        //void checkAuth()  // This code calls the authentication twice. Not needed? /M
         void loadFriends()
         void loadUsers()
     }, [])
@@ -27,7 +27,6 @@ export const GlobalProvider = ({children}) => {
         const response = await fetch('/api/users')
         const result = await response.json()
         setUsers(result)
-        console.log(result)
     }
 
     const checkAuth = async () => {

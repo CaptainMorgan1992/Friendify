@@ -7,7 +7,7 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {order, auth, activity,duration, checkUser, selectFriend} = useContext(GlobalContext)
+    const {auth, activity,duration, selectFriend} = useContext(GlobalContext)
 
     const nav = useNavigate()
 

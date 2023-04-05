@@ -3,7 +3,7 @@ import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 
 export default function ({orderDetails}) {
-    const {activity, checkUser, order, submitOrder} = useContext(GlobalContext)
+    const {activity, checkUser, submitOrder} = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
     //const [booked, setBooked] = useState(new Date())
@@ -39,7 +39,7 @@ export default function ({orderDetails}) {
         //setBooked(new Date().getMonth())
         const intervalId = setInterval(() => {
             setTimer(timer => timer - 1);
-        }, 1000);
+        }, 60000);
 
         if(timer === 0){
             return () => clearInterval(intervalId);

@@ -7,7 +7,7 @@ import OrderCard from "../components/OrderCard.jsx";
 
 export default function () {
 const {selectFriend} = useContext(GlobalContext)
-    console.log({selectFriend})
+
     return <div>
         {
             selectFriend.map(orders => <OrderCard orderDetails={orders}/>)
