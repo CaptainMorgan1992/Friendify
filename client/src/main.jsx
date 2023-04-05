@@ -12,7 +12,8 @@ import RentAFriendPage from "./pages/RentAFriendPage.jsx";
 import BookingConfirmationPage from "./pages/BookingConfirmationPage.jsx";
 import RegistrationConfirmation from "./pages/RegistrationConfirmation.jsx";
 import AddFriendPage from "./pages/AddFriendPage.jsx";
-
+import UserConfirmationPage from "./pages/UserConfirmationPage.jsx";
+import RegistrationConfirmation from "./components/RegistrationConfirmation.jsx";
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <RouterProvider router={
@@ -26,8 +27,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         <Route path={'register'} element={<Register/>}/>
                         <Route path={'registrationconfirmation'} element={<RegistrationConfirmation/>}/>
                         <Route path={'friends'} element={<RentAFriendPage/>}/>
-                        <Route path={'userconfirmation'} element={<BookingConfirmationPage/>}/>
-                        <Route path={'addfriend'} element={<AddFriendPage/>}/>
+                        <Route path={'userconfirmation'} element={<UserConfirmationPage/>}/>
+						<Route path={'addfriend'} element={<AddFriendPage/>}/>
                         <Route/>
 
 

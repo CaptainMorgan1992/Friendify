@@ -14,7 +14,7 @@ export default function (){
     return <div id={"friend-card-wrapper"}>
 
         {
-            friends.map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
+            friends.map(friend => <FriendCard details={friend} key={friend.id}/>)
 
         }
     </div>
