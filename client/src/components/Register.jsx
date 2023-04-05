@@ -1,5 +1,6 @@
 import React, {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
+import {Link} from "react-router-dom";
 
 export default function () {
     const {register} = useContext(GlobalContext)
@@ -49,7 +50,9 @@ export default function () {
                        value={city}
                        onChange={e => setCity(e.target.value)}/>
 
+                <Link to="/registrationconfirmation">
                 <button type={'submit'}>Register</button>
+                </Link>
             </form>
         </div>
     </>

@@ -13,6 +13,7 @@ header {
     background-color: #B0DAFF;
     color: #525050;
     border-radius: 1rem;
+    margin: 2%;
     padding: 1rem;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
@@ -36,5 +37,9 @@ nav button{
     border-radius: 0.5rem;
     border: 0px solid white;
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.09);
+}
+
+button {
+    cursor: pointer;
 }
 

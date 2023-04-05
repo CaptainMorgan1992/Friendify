@@ -2,7 +2,7 @@ import {createContext, useState, useEffect} from "react"
 
 const GlobalContext = createContext(null)
 export const GlobalProvider = ({children}) => {
-
+	const [order, setOrder] = useState([])
     const [friends, setFriends] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
 
@@ -15,7 +15,6 @@ export const GlobalProvider = ({children}) => {
     const loadFriends = async () => {
         const response = await fetch("/api/friends/")
         const result = await response.json()
-        console.log(result)
         setFriends(result)
     }
 
@@ -33,6 +32,10 @@ export const GlobalProvider = ({children}) => {
             body: JSON.stringify({email, password})
         })
         void checkAuth()
+    }
+
+    const submitOrder = async (user,friend) =>{
+
     }
 
     const logout = async () => {
@@ -84,8 +87,9 @@ export const GlobalProvider = ({children}) => {
             setAuth,
             submitLogin,
             logout,
-            register,
-            updateInfo
+   			order,
+            setOrder,
+            register
         }}>
             {children}
         </GlobalContext.Provider>
