@@ -5,7 +5,7 @@ import "../styles/registerfriend.css"
 
 export default function () {
     const {registerFriend} = useContext(GlobalContext)
-    const [traits, setTrait] = useState("")
+    const [traits, setTraits] = useState("")
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [price, setPrice] = useState("");
@@ -15,7 +15,7 @@ export default function () {
 
     const postFriend = (e) => {
         e.preventDefault()
-        if (!name || !age || !price || !picture || !city) {
+        if ( !traits || !name || !age || !price || !picture || !city) {
             return console.log('Fields cannot be empty!');
         }
         registerFriend(traits, name, age, price, picture, city)
@@ -24,7 +24,7 @@ export default function () {
 
 
     function ShowConfirmation () {
-        if (name, age, price, picture, city) {
+        if (traits, name, age, price, picture, city) {
             return <p id={"confirmation-text"}>Your friend has successfully been added to our database</p>
         }
         else return <p id={"confirmation-text"}>You must fill in all details before you can add a friend</p>
@@ -43,7 +43,7 @@ export default function () {
                        onChange={e => setName(e.target.value)}/>
 
                 <h4 className={"h4-addfriend"}>Traits</h4>
-                <input placeholder={'Traits'}
+                <input placeholder={'Kind, helpful, sporty'}
                        type={'traits'}
                        value={traits}
                        onChange={e => setTraits(e.target.value)}/>

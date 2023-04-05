@@ -35,7 +35,7 @@ export default function (){
     }
 
     function ShowAddFriendButton() {
-        if (auth.loggedIn === true) {
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
             return <Link to="/addfriend">
              <AddFriendButton/>
             </Link>

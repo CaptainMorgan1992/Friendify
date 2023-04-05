@@ -14,7 +14,7 @@ export default function (){
     return <div id={"friend-card-wrapper"}>
 
         {
-            friends.splice(0,3).map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
+            friends.map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
 
         }
     </div>
