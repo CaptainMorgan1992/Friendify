@@ -4,11 +4,10 @@ import Router from "express"
 const ordersRoutes = Router()
 
 const orderSchema = new Schema({
-    friend: {type:mongoose.Types.ObjectId, ref:"friends"},
-    user: {type:mongoose.Types.ObjectId, ref: "users"},
-    activity: String,
-    location: String,
-    duration: String
+    friend: [],
+    user: [],
+    activity: [],
+    location: [], //Exists in the friend
 })
 
 mongoose.model('orders', orderSchema)

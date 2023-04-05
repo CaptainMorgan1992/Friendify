@@ -6,10 +6,11 @@ import FriendCardDetailed from "../components/FriendCardDetailed.jsx";
 import OrderCard from "../components/OrderCard.jsx";
 
 export default function () {
-const {order} = useContext(GlobalContext)
+const {selectFriend} = useContext(GlobalContext)
+    console.log({selectFriend})
     return <div>
         {
-            order.map(orders => <OrderCard orderDetails={orders}/>)
+            selectFriend.map(orders => <OrderCard orderDetails={orders}/>)
         }
     </div>
 

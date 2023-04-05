@@ -3,15 +3,19 @@ import {createContext, useState, useEffect} from "react"
 const GlobalContext = createContext(null)
 export const GlobalProvider = ({children}) => {
 	const [order, setOrder] = useState([])
+	const [selectFriend, setSelectFriend] = useState([])
     const [activity, setActivity] = useState([])
     const [duration, setDuration] = useState([])
     const [friends, setFriends] = useState([])
+    const [users, setUsers] = useState([])
+    const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
 
 
     useEffect(() => {
         void checkAuth()
         void loadFriends()
+        void loadUsers()
     }, [])
 
     const loadFriends = async () => {
@@ -19,12 +23,19 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         setFriends(result)
     }
+    const loadUsers = async () =>{
+        const response = await fetch('/api/users')
+        const result = await response.json()
+        setUsers(result)
+        console.log(result)
+    }
 
     const checkAuth = async () => {
         const response = await fetch("/api/login")
         const result = await response.json()
         console.log('auth state: ', result)
         setAuth(result)
+        checkUser.push(result.name)
     }
 
     const submitLogin = async (email, password) => {
@@ -36,12 +47,14 @@ export const GlobalProvider = ({children}) => {
         void checkAuth()
     }
 
-    const submitOrder = async (user,friend) =>{
-        const response = await fetch("api/login", {
+    const submitOrder = async (user,friend, activity,location,duration) =>{
+        const response = await fetch("/api/orders", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({user,friend})
+            body: JSON.stringify({user,friend, activity,location,duration})
         })
+        const result = response.json()
+        console.log(result)
     }
 
     const logout = async () => {
@@ -78,6 +91,7 @@ export const GlobalProvider = ({children}) => {
     return (
         <GlobalContext.Provider value={{
             friends,
+            users,
             setFriends,
             auth,
             setAuth,
@@ -85,11 +99,15 @@ export const GlobalProvider = ({children}) => {
             logout,
    			order,
             setOrder,
+            selectFriend,
             activity,
             setActivity,
             duration,
             setDuration,
-            register
+            checkUser,
+            setCheckUser,
+            register,
+            submitOrder
         }}>
             {children}
         </GlobalContext.Provider>

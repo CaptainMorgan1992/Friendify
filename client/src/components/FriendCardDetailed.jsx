@@ -7,20 +7,19 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {order, auth, activity,duration} = useContext(GlobalContext)
+    const {order, auth, activity,duration, checkUser, selectFriend} = useContext(GlobalContext)
 
     const nav = useNavigate()
 
     return <HireAFriend/>
-
-
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
             <h2>{name}</h2>
             <img id="detailedPicture" alt={"picture of a friend"} src={picture}/>
             <p id="ageParagraph">{age}</p>
             <p id="cityParagraph">{city}</p>
-            <p id="priceParagraph">Price per 2 hrs{price}</p>
+            <p id="priceParagraph">{price}kr</p>
+            <p id="priceParagraph">Duration: 2 hours</p>
             <p id="traitsParagraph">{traits}</p>
             <div id="standing-area">
                 <DropDownMenu/>
@@ -38,11 +37,6 @@ export default function ({details}) {
                 <option>Swim in a park</option>
                 <option>Study programming</option>
             </select>
-            <select onChange={chooseDuration}>
-                <option>Select a value</option>
-                <option value={2}>2 hours</option>
-                <option value={4}>4 hours</option>
-            </select>
         </div>
     }
     function chooseActivity(e){
@@ -50,6 +44,8 @@ export default function ({details}) {
         activity.push(e.target.value)
         console.log(activity)
     }
+
+    // Removed at the moment. duration is hardcoded
     function chooseDuration(e){
         e.preventDefault()
         duration.push(e.target.value)
@@ -62,13 +58,11 @@ export default function ({details}) {
     }
     function hireFriend(details){
         if(auth.loggedIn){
-            order.push(details)
-            console.log(order)
+            selectFriend.push(details)
+            console.log(selectFriend)
             nav('/userconfirmation')
         }
-
     }
-
 }
 
 
