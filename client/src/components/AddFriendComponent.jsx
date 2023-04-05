@@ -11,24 +11,29 @@ export default function () {
     const [price, setPrice] = useState("");
     const [picture, setPicture] = useState("");
     const [city, setCity] = useState("");
+    const [message, setMessage] = useState("* All fields required before you can register a new friend")
 
+    function HandleRegistration() {
+        setMessage("You have successfully added a new friend to the database")
 
+    }
     const postFriend = (e) => {
         e.preventDefault()
         if ( !traits || !name || !age || !price || !picture || !city) {
             return console.log('Fields cannot be empty!');
         }
-        registerFriend(traits, name, age, price, picture, city)
-        ShowConfirmation()
+        else
+            registerFriend(traits, name, age, price, picture, city)
+        HandleRegistration()
     }
 
-
+/*
     function ShowConfirmation () {
         if (traits, name, age, price, picture, city) {
             return <p id={"confirmation-text"}>Your friend has successfully been added to our database</p>
         }
         else return <p id={"confirmation-text"}>You must fill in all details before you can add a friend</p>
-    }
+    }*/
 
 
     return <>
@@ -74,7 +79,7 @@ export default function () {
 
 
                     <button type={'submit'}>Register Friend</button>
-                <ShowConfirmation/>
+                <p id={"message-p"}>{message}</p>
             </form>
         </div>
     </>
