@@ -9,7 +9,7 @@ export default function (){
     //const id = useParams().id
      //const findFriend = friends.find(friend => friend.id === parseInt(id))
     //console.log(findFriend)
-    console.log(friends.id)
+
 
     return <div id={"friend-card-wrapper"}>
 
@@ -17,6 +17,5 @@ export default function (){
             friends.splice(0,3).map(friend => <FriendCard details={friend} key={friend.id}/>)//Ask about friends ID
 
         }
-
     </div>
 }
