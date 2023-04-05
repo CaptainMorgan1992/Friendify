@@ -16,7 +16,10 @@ export default function ({confirmOrder}){
     </div>
 
     function sendConfirmation(){
-
+        //To be able to send confirmation we should oo it like this: When i press this button the card is sent to the database
+        //The card confirmed then === true. If it is true it can get mapped out on the userProfile(the one who is not an admin)
+        //Right now the confirmation is after the user clicks "confirm". Instead of showing the card, I should just show
+        //"thank you for your confirmation". After the admin has clicked "confirm order", the user can see the ordercard in their profile
         console.log("Send confirmation")
         console.log(confirmOrder) //splice it
         for(let i = -1; i<confirmOrder.length; i++){
