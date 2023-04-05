@@ -5,7 +5,7 @@ export const GlobalProvider = ({children}) => {
 	const [orders, setOrders] = useState([])
 	const [selectFriend, setSelectFriend] = useState([])
     const [activity, setActivity] = useState([])
-    const [duration, setDuration] = useState([])
+    const [time, setTime] = useState([])
     const [friends, setFriends] = useState([])
     const [users, setUsers] = useState([])
     const [checkUser, setCheckUser] = useState([])
@@ -13,7 +13,7 @@ export const GlobalProvider = ({children}) => {
 
 
     useEffect(() => {
-        //void checkAuth()  // This code calls the authentication twice. Not needed? /M
+        void checkAuth()
         void loadFriends()
         void loadUsers()
         void loadOrders()
@@ -42,6 +42,7 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         console.log('auth state: ', result)
         setAuth(result)
+        console.log(result)
         checkUser.push(result.name)
     }
 
@@ -51,14 +52,15 @@ export const GlobalProvider = ({children}) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
         })
+        console.log(response)
         void checkAuth()
     }
 
-    const submitOrder = async (user,friend, activity,location,duration) =>{
+    const submitOrder = async (user,friend,activity,time) =>{
         const response = await fetch("/api/orders", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({user,friend, activity,location,duration})
+            body: JSON.stringify({user,friend,activity,time})
         })
         const result = response.json()
         console.log(result)
@@ -119,8 +121,8 @@ export const GlobalProvider = ({children}) => {
             selectFriend,
             activity,
             setActivity,
-            duration,
-            setDuration,
+            time,
+            setTime,
             checkUser,
             setCheckUser,
             register,

@@ -3,7 +3,7 @@ import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 
 export default function ({orderDetails}) {
-    const {activity, checkUser, submitOrder} = useContext(GlobalContext)
+    const {activity, checkUser, submitOrder,time} = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
     //const [booked, setBooked] = useState(new Date())
@@ -21,9 +21,10 @@ export default function ({orderDetails}) {
                 {activity.map(a => <h4>Your activity: {a}</h4>)}
                 <h4>Location:{city}</h4>
                 {checkUser.map(user => <h4>Booked by {user}</h4>)}
-                <h4>Need help?: Call 042-222-33-22</h4>
+                {time.map(clock => <h4>Time: {clock}:00</h4>)}
                 <h4>Total cost: {price}kr </h4>
                 <h4>Duration: 2 hours </h4>
+                <p>Need help?: Call 042-222-33-22</p>
                 <button onClick={confirmBooking}>Confirm booking</button>
                 <h4>Time until arrival:{timer}</h4>
                 <h4>{confirmed}</h4>
@@ -32,7 +33,7 @@ export default function ({orderDetails}) {
 
 
     function confirmBooking(){
-        submitOrder(checkUser,orderDetails,activity)
+        submitOrder(checkUser,orderDetails,activity,time)
         console.log(submitOrder)
         setTimer(40)
         setConfirmed("Your booking has been confirmed")

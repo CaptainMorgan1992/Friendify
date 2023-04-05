@@ -7,8 +7,9 @@ const orderSchema = new Schema({
     friend: [],
     user: [],
     activity: [],
-    location: [], //Exists in the friend
+    time: [],
     confirmed: {type:Boolean, default:false}
+
 })
 
 mongoose.model('orders', orderSchema)

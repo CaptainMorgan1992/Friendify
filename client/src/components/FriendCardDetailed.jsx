@@ -7,7 +7,7 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {auth, activity,duration, selectFriend} = useContext(GlobalContext)
+    const {auth, activity,time, selectFriend} = useContext(GlobalContext)
 
     const nav = useNavigate()
 
@@ -37,6 +37,12 @@ export default function ({details}) {
                 <option>Swim in a park</option>
                 <option>Study programming</option>
             </select>
+            <select onChange={chooseTime}>
+                <option>Select a value</option>
+                <option value={16}>16.00</option>
+                <option value={18}>18.00</option>
+                <option value={20}>20.00</option>
+            </select>
         </div>
     }
     function chooseActivity(e){
@@ -45,16 +51,11 @@ export default function ({details}) {
         console.log(activity)
     }
 
-    // Removed at the moment. duration is hardcoded
-    function chooseDuration(e){
+   // does not get pushed to database
+    function chooseTime(e){
         e.preventDefault()
-        duration.push(e.target.value)
-        console.log(duration)
-        if(duration.includes("2")){
-            console.log("Price change?")
-        } else if(duration.includes("4")){
-            console.log("Price change?")
-        }
+        time.push(e.target.value)
+        console.log(time)
     }
     function hireFriend(details){
         if(auth.loggedIn){
