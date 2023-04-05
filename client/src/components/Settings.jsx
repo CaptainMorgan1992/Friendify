@@ -10,7 +10,7 @@ export default function () {
     const [city, setCity] = useState("");
 
 
-    const postUser = (e) => {
+    const updateUser = (e) => {
         e.preventDefault()
         if (!name || !email || !password || !city) {
             return console.log('fields cannot be empty!');
@@ -21,7 +21,7 @@ export default function () {
 
     return <>
         <h1>Update Account</h1>
-            <form onSubmit={postUser}>
+            <form onSubmit={updateUser}>
                 <input placeholder={'Name'}
                        type={'name'}
                        value={name}
