@@ -37,7 +37,11 @@ export const GlobalProvider = ({children}) => {
     }
 
     const submitOrder = async (user,friend) =>{
-
+        const response = await fetch("api/login", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({user,friend})
+        })
     }
 
     const logout = async () => {
