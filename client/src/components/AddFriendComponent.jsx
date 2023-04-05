@@ -19,7 +19,7 @@ export default function () {
             return console.log('Fields cannot be empty!');
         }
         registerFriend(traits, name, age, price, picture, city)
-        showConfirmation()
+        ShowConfirmation()
     }
 
 
