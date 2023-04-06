@@ -20,7 +20,9 @@ export default function ({details}) {
             <p id="cityParagraph">{city}</p>
             <p id="priceParagraph">{price}kr</p>
             <p id="priceParagraph">Duration: 2 hours</p>
-            <p id="traitsParagraph">{traits}</p>
+            <p className="traitsParagraph">{traits[0]} </p>
+            <p className="traitsParagraph">{traits[1]} </p>
+            <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
                 <div id="button-div">
