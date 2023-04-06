@@ -1,6 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
+import AdditionalServices from "./AdditionalServices.jsx";
+
 
 export default function ({orderDetails}) {
     const {activity, checkUser, submitOrder} = useContext(GlobalContext)
@@ -17,6 +19,7 @@ export default function ({orderDetails}) {
         <img id="detailedPicture" alt={"picture of a friend"} src={picture}/>
             <div id='confirmation-details'>
                 <h3 id={'booking-details'}>Booking details</h3>
+                <AdditionalServices/>
                 <h4>Your friend: {name}</h4>
                 {activity.map(a => <h4>Your activity: {a}</h4>)}
                 <h4>Location:{city}</h4>
@@ -25,7 +28,7 @@ export default function ({orderDetails}) {
                 <h4>Total cost: {price}kr </h4>
                 <h4>Duration: 2 hours </h4>
                 <button onClick={confirmBooking}>Confirm booking</button>
-                <h4>Time until arrival:{timer}</h4>
+                <h4>Time until arrival:{timer} </h4>
                 <h4>{confirmed}</h4>
             </div>
         </div>
