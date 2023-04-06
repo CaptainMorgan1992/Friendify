@@ -2,12 +2,14 @@ import React, {useContext, useEffect, useState} from "react";
 import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 
-export default function ({orderFriendDetails}) {
-    const {activity, checkUser, submitOrder,time} = useContext(GlobalContext)
+
+export default function ({orderDetails}) {
+    const {activity, checkUser, submitOrder,time additionalService} = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
     //const [booked, setBooked] = useState(new Date())
-    const {name,picture, city, price} = orderFriendDetails;
+    const {name,picture, city, price} = orderDetails;
+    let {additionalServicePrice} = calcPrice();
 
     useEffect(() => {
 
@@ -21,21 +23,35 @@ export default function ({orderFriendDetails}) {
                 <h4>Your friend: {name}</h4>
                 {activity.map(a => <h4>Your activity: {a}</h4>)}
                 <h4>Location:{city}</h4>
+                {additionalService.map(s => <h4>Your additional service: {s}</h4>)}
                 {checkUser.map(user => <h4>Booked by {user}</h4>)}
-                {time.map(clock => <h4>Time: {clock}:00</h4>)}
-                <h4>Total cost: {price}kr </h4>
-                <h4>Duration: 2 hours </h4>
+                <h4>Need help?: Call 042-222-33-22</h4>
+                <h4>Total cost: {price + additionalServicePrice}kr </h4>
+               {time.map(clock => <h4>Time: {clock}:00</h4>)}
+				 <h4>Duration: 2 hours </h4>
                 <p>Need help?: Call 042-222-33-22</p>
 
                 <button onClick={confirmBooking}>Confirm booking</button>
-                <h4>Time until arrival:{timer}</h4>
-                {(confirmed && <i className="fa-regular fa-face-smile fa-spin"></i> )}
-
+                <h4>Time until arrival:{timer} </h4>
+                <h4>{confirmed}</h4>
             </div>
 
         </div> </>
 
 
+
+    function calcPrice(){
+        let additionalServicePrice = 0;
+        if (additionalService.length > 0) {
+             additionalServicePrice = 100;
+        } else {
+             additionalServicePrice = 0;
+        }
+        console.log(additionalServicePrice)
+
+        return { additionalServicePrice }
+
+    }
     function confirmBooking(){
         submitOrder(checkUser,orderFriendDetails,activity,time)
         console.log(submitOrder)
