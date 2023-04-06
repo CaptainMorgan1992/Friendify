@@ -3,12 +3,11 @@ import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 
 
-export default function ({orderDetails}) {
-    const {activity, checkUser, submitOrder,time additionalService} = useContext(GlobalContext)
+export default function ({orderFriendDetails}) {
+    const {activity, checkUser, submitOrder,time,additionalService} = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
-    //const [booked, setBooked] = useState(new Date())
-    const {name,picture, city, price} = orderDetails;
+    const {name,picture, city, price} = orderFriendDetails;
     let {additionalServicePrice} = calcPrice();
 
     useEffect(() => {
