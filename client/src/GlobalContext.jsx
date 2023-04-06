@@ -7,7 +7,7 @@ export const GlobalProvider = ({children}) => {
     const [activity, setActivity] = useState([])
     const [duration, setDuration] = useState([])
     const [friends, setFriends] = useState([])
-    const [users, setUsers] = useState([])
+    const [currentUser, setCurrentUser] = useState(null)
     const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
     const [additionalService, setAdditionalService] = useState([])
@@ -16,7 +16,6 @@ export const GlobalProvider = ({children}) => {
     useEffect(() => {
         void checkAuth()  // This code calls the authentication twice. Not needed? /M
         void loadFriends()
-        void loadUsers()
         void loadOrders()
     }, [])
 
@@ -25,10 +24,10 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         setFriends(result)
     }
-    const loadUsers = async () =>{
-        const response = await fetch('/api/users')
+    const getCurrentUser = async () =>{
+        const response = await fetch('/api/users/current')
         const result = await response.json()
-        setUsers(result)
+        setCurrentUser(result)
     }
 
     const loadOrders = async () =>{
@@ -85,11 +84,11 @@ export const GlobalProvider = ({children}) => {
     }
 
 
-    const updateInfo = async (userId, user) => {
-        const response = await fetch(`/api/users/${userId}`, {
+    const updateInfo = async (currentUser) => {
+        const response = await fetch(`/api/users/${currentUser.id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({user})
+            body: JSON.stringify({currentUser})
         })
         const result = await response.json()
         console.log(result)
@@ -110,7 +109,6 @@ export const GlobalProvider = ({children}) => {
     return (
         <GlobalContext.Provider value={{
             friends,
-            users,
             setFriends,
             auth,
             setAuth,
@@ -130,7 +128,10 @@ export const GlobalProvider = ({children}) => {
             submitOrder,
             additionalService,
             setAdditionalService,
-            updateInfo
+            updateInfo,
+            currentUser,
+            setCurrentUser,
+            getCurrentUser
         }}>
             {children}
         </GlobalContext.Provider>

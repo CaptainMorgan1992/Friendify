@@ -21,6 +21,16 @@ usersRoutes.get('/', async (req, res) => {
     res.json(user)
 })
 
+usersRoutes.get('/current', async (req, res) => {
+    if(req.session.user) {
+        const user = await mongoose.models.users.findById(req.session.user._id)
+        res.json(user)
+    } else {
+        res.status(401)
+        res.json({loggedIn: false})
+    }
+})
+
 usersRoutes.get('/:id', async (req, res) => {
     const user = await mongoose.models.users.findById(req.params.id)
     res.json(user)
