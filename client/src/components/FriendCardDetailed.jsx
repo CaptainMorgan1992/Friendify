@@ -8,11 +8,10 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({friendDetails}) {
     const {name, age, picture, city, traits, price} = friendDetails;
-    const {auth, activity,duration, selectFriend, additionalService,time} = useContext(GlobalContext)
+    const {auth, activity, selectFriend, additionalService,time} = useContext(GlobalContext)
 
     const nav = useNavigate()
-
-
+    
     return <HireAFriend/>
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
@@ -80,7 +79,6 @@ export default function ({friendDetails}) {
         additionalService.push(e.target.value)
         console.log(additionalService)
     }
-
     function chooseTime(e){
         e.preventDefault()
         time.push(e.target.value)
