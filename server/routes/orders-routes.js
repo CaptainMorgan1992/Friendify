@@ -47,7 +47,8 @@ ordersRoutes.get('/:id', async (req, res) => {
 })
 
 ordersRoutes.put('/:_id', async (req, res) => {
-    const order = await mongoose.models.orders.findByIdAndUpdate(req.params.id, req.body)
+    const order = await mongoose.models.orders.findByIdAndUpdate(req.params._id, req.body)
+    await order.save()
     res.json(order)
 })
 
