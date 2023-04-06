@@ -47,3 +47,6 @@ import ordersRoutes from "./routes/orders-routes.js";
 api.use('/api/orders', ordersRoutes)
 import loginRoutes from "./routes/login-routes.js";
 api.use('/api/login', loginRoutes)
+
+import additionalServicesRoutes from "./routes/additional-services-routes.js";
+api.use('/api/additional-services', additionalServicesRoutes)
