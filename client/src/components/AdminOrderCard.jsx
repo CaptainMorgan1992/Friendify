@@ -14,7 +14,6 @@ export default function ({confirmOrder}){
         <p id="traitsParagraph">ID: {_id}</p>
         <p id="traitsParagraph">FriendDetails: {}</p>
         <button onClick={sendConfirmation}>Confirm order</button>
-
     </div>
 
     function sendConfirmation(){

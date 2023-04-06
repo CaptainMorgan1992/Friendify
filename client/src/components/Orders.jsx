@@ -12,14 +12,13 @@ export default function () {
     </div>
 
 function getUnconfirmedOrders(){
-     for (let i = 0; i<orders.length; i++){
-             //console.log(orders[i].confirmed, orders[i].user)
-         if (orders[i].confirmed === false && auth.loggedIn && auth.email === "johnnyjohnson@example.com"){
-        return orders.map(order => <AdminOrderCard confirmOrder={order}/>)
-         }
-         else if(orders[i].confirmed === true && auth.loggedIn){
-             return orders.map(order => <AdminOrderCard confirmOrder={order}/>)
-         }
-     }
-     }
+        const filteredOrders = orders.filter(order => {
+            if (order.confirmed === false && auth.loggedIn && auth.email === "johnnyjohnson@example.com") {
+                return true;
+            }
+        });
+
+        return filteredOrders.map(order => <AdminOrderCard confirmOrder={order} />);
+    }
 }
+
