@@ -47,7 +47,7 @@ export default function () {
                        value={city}
                        onChange={e => setCity(e.target.value)}/>
 
-                <button type={'submit'}>Register</button>
+                <button type={'submit'}>Update</button>
             </form>
     </>
 }

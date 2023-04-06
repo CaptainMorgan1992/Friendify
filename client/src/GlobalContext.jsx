@@ -58,11 +58,12 @@ export const GlobalProvider = ({children}) => {
     }
 
     const updateInfo = async (name, email, phonenumber, password, city) => {
-        const response = await fetch(`/api/users/`, {
+        const response = await fetch('/api/users/:id', {
             method: "PATCH",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name, email, phonenumber, password, city})
         })
+        void checkAuth()
         const result = await response.json()
         console.log(result)
     }
@@ -89,7 +90,8 @@ export const GlobalProvider = ({children}) => {
             logout,
    			order,
             setOrder,
-            register
+            register,
+            updateInfo
         }}>
             {children}
         </GlobalContext.Provider>

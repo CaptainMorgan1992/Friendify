@@ -1,6 +1,7 @@
 import Router from 'express'
 import mongoose, {Schema} from "mongoose";
 import getHash from "../utils/hash.js";
+import session from "express-session"
 
 const usersRoutes = Router()
 
@@ -43,8 +44,8 @@ usersRoutes.delete('/:id', async (req, res) => {
     res.json(user)
 })
 
-usersRoutes.patch('/', async (req, res) => {
-    const user = await mongoose.models.users.findByIdAndUpdate(req.params.id, req.body)
+usersRoutes.patch('/:id', async (req, res) => {
+    const user = await mongoose.models.users.findByIdAndUpdate(req.session.id, req.body)
     if(!user) {
         return res.status(404).json({message: "User not found"})
     }
