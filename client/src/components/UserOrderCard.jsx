@@ -39,7 +39,6 @@ export default function ({orderDetails}) {
         let additionalServicePrice = 0;
         if (additionalService.length > 0) {
              additionalServicePrice = 100;
-            console.log("100 kr +")
         } else {
              additionalServicePrice = 0;
         }
