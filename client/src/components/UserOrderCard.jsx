@@ -4,15 +4,28 @@ import GlobalContext from "../GlobalContext.jsx";
 
 
 export default function ({orderFriendDetails}) {
-    const {activity, checkUser, submitOrder,time,additionalService} = useContext(GlobalContext)
+    const {
+        activity,
+        checkUser,
+        submitOrder,
+        time,
+        additionalService,
+        getCurrentUser,
+        currentUser,
+        auth,
+        orders
+    } = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
     const {name,picture, city, price} = orderFriendDetails;
     let {additionalServicePrice} = calcPrice();
 
-    useEffect(() => {
+    useEffect( () => {
+        getCurrentUser()
+    }, [])
 
-    }, []);
+    console.log(currentUser)
+
     return <>
        <div id={'confirmation-div'}>
             <h2>Confirm your booking</h2>
