@@ -10,6 +10,7 @@ export const GlobalProvider = ({children}) => {
     const [users, setUsers] = useState([])
     const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
+    const [additionalService, setAdditionalService] = useState([])
 
 
     useEffect(() => {
@@ -127,6 +128,8 @@ export const GlobalProvider = ({children}) => {
             register,
 			registerFriends,
             submitOrder,
+            additionalService,
+            setAdditionalService,
             updateInfo
         }}>
             {children}
