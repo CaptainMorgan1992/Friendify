@@ -1,13 +1,14 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
 import "../styles/bookingconfirmation.css"
 
 
+
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {auth, activity,duration, selectFriend} = useContext(GlobalContext)
+    const {auth, activity,duration, selectFriend, additionalService} = useContext(GlobalContext)
 
     const nav = useNavigate()
 
@@ -26,11 +27,32 @@ export default function ({details}) {
             <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
+                <AdditionalServices/>
                 <div id="button-div">
                         <button  onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
                 </div>
             </div>
         </div>
+    }
+
+    function AdditionalServices() {
+        return <div>
+            <div id={"additional-services-titles"}>
+                <h4>Add an additional service (+100kr) </h4>
+                <h5>Your friend can bring:</h5>
+            </div>
+            <div id={"additional-services-option"}>
+                <select onChange={chooseAdditionalService}>
+                    <option>Select a value</option>
+                    <option>Flowers</option>
+                    <option>A cup of coffee</option>
+                    <option>A dog</option>
+                    <option>A grandma</option>
+                    <option>Dogge Doggelito</option>
+                </select>
+            </div>
+        </div>
+
     }
     function DropDownMenu(){
         return <div>
@@ -47,8 +69,17 @@ export default function ({details}) {
         activity.push(e.target.value)
         console.log(activity)
     }
+    function chooseAdditionalService(e){
+        e.preventDefault()
+        additionalService.push(e.target.value)
+        console.log(additionalService)
+    }
 
-    // Removed at the moment. duration is hardcoded
+
+
+    // Removed at the m
+    //
+    // oment. duration is hardcoded
     function chooseDuration(e){
         e.preventDefault()
         duration.push(e.target.value)
