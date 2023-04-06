@@ -13,7 +13,7 @@ export const GlobalProvider = ({children}) => {
 
 
     useEffect(() => {
-        //void checkAuth()  // This code calls the authentication twice. Not needed? /M
+        void checkAuth()  // This code calls the authentication twice. Not needed? /M
         void loadFriends()
         void loadUsers()
         void loadOrders()
