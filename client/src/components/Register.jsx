@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function () {
     const {register} = useContext(GlobalContext)
@@ -9,6 +9,7 @@ export default function () {
     const [phonenumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("")
     const [city, setCity] = useState("");
+    const nav = useNavigate()
 
 
     const postUser = (e) => {
@@ -17,6 +18,7 @@ export default function () {
             return console.log('Email and password fields cannot be empty!');
         }
         register(name, email, phonenumber, password, city)
+        nav("/registrationconfirmation")
     }
 
 
@@ -50,9 +52,7 @@ export default function () {
                        value={city}
                        onChange={e => setCity(e.target.value)}/>
 
-                <Link to="/registrationconfirmation">
                 <button type={'submit'}>Register</button>
-                </Link>
             </form>
         </div>
     </>

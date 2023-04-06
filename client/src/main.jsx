@@ -9,8 +9,10 @@ import Settings from "./components/Settings.jsx";
 import OurPoliciesPage from "./pages/OurPoliciesPage.jsx";
 import Register from "./components/Register.jsx";
 import RentAFriendPage from "./pages/RentAFriendPage.jsx";
-import BookingConfirmationPage from "./pages/BookingConfirmationPage.jsx";
-import RegistrationConfirmation from "./pages/RegistrationConfirmation.jsx";
+//import BookingConfirmationPage from "./pages/BookingConfirmationPage.jsx";
+import AddFriendPage from "./pages/AddFriendPage.jsx";
+import UserConfirmationPage from "./pages/UserConfirmationPage.jsx";
+import RegistrationConfirmation from "./components/RegistrationConfirmation.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
@@ -25,10 +27,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         <Route path={'register'} element={<Register/>}/>
                         <Route path={'registrationconfirmation'} element={<RegistrationConfirmation/>}/>
                         <Route path={'friends'} element={<RentAFriendPage/>}/>
-                        <Route path={'userconfirmation'} element={<BookingConfirmationPage/>}/>
+                        <Route path={'userconfirmation'} element={<UserConfirmationPage/>}/>
+						<Route path={'addfriend'} element={<AddFriendPage/>}/>
                         <Route/>
 
-                            {/* <Route path={'register'} element={<Registrationpage/>}/>
+
+                            {/*
+                             <Route path={'addfriend'} element={<AddFriendPage/>}/>
                     <Route path={'profile'} element={<Profilepage/>}>
                     <Route path={'userprofile'} element={<Userprofilepage/>}/>
                     <Route path={'adminprofile'} element={<Adminprofilepage/>}/>
