@@ -94,16 +94,18 @@ export const GlobalProvider = ({children}) => {
     }
 
     const deleteFriend = async (id) => {
-        try {
             const response = await fetch(`/api/friends/${id}`, {
                 method: "DELETE"
+            }).
+            then(response => {
+                if (!response.ok) {
+                    console.log("failed to delete item")
+                }
+                console.log('item deleted successfully')
+            }).
+            catch(error => {
+                console.log("Error deleting item")
             })
-            const result = await response.json()
-            console.log(result)
-        }
-        catch (error) {
-            console.log(error)
-        }
     }
 
 

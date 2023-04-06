@@ -1,9 +1,11 @@
 import React, {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
+import {useParams} from "react-router-dom";
 
 export default function () {
     const {deleteFriend} = useContext(GlobalContext)
     const [message, setMessage] = useState(" ")
+
 
     function handleDeletion() {
         setMessage("You have successfully deleted the friend from the database")
