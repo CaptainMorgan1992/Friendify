@@ -83,7 +83,7 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-    const registerFriends = async (traits, name, age, price, picture, city) => {
+    const registerFriend = async (traits, name, age, price, picture, city) => {
         const response = await fetch("/api/friends", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -91,6 +91,19 @@ export const GlobalProvider = ({children}) => {
         })
         const result = await response.json()
         console.log(result)
+    }
+
+    const deleteFriend = async (id) => {
+        try {
+            const response = await fetch(`/api/friends/${id}`, {
+                method: "DELETE"
+            })
+            const result = await response.json()
+            console.log(result)
+        }
+        catch (error) {
+            console.log(error)
+        }
     }
 
 
@@ -124,8 +137,9 @@ export const GlobalProvider = ({children}) => {
             checkUser,
             setCheckUser,
             register,
-			registerFriends,
-            submitOrder
+			registerFriend,
+            submitOrder,
+            deleteFriend
         }}>
             {children}
         </GlobalContext.Provider>

@@ -27,15 +27,6 @@ export default function () {
         HandleRegistration()
     }
 
-/*
-    function ShowConfirmation () {
-        if (traits, name, age, price, picture, city) {
-            return <p id={"confirmation-text"}>Your friend has successfully been added to our database</p>
-        }
-        else return <p id={"confirmation-text"}>You must fill in all details before you can add a friend</p>
-    }*/
-
-
     return <>
         <h2 id={"h1-registerFriend"}>Add a new friend</h2>
         <div className={"container"}>
@@ -48,7 +39,7 @@ export default function () {
                        onChange={e => setName(e.target.value)}/>
 
                 <h4 className={"h4-addfriend"}>Traits</h4>
-                <input placeholder={'Kind, helpful, sporty'}
+                <input placeholder={'Kind helpful sporty'}
                        type={'traits'}
                        value={traits}
                        onChange={e => setTraits(e.target.value)}/>
@@ -76,7 +67,6 @@ export default function () {
                        type={'text'}
                        value={city}
                        onChange={e => setCity(e.target.value)}/>
-
 
                     <button type={'submit'}>Register Friend</button>
                 <p id={"message-p"}>{message}</p>

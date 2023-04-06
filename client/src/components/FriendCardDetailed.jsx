@@ -1,14 +1,15 @@
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
 import "../styles/bookingconfirmation.css"
+import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 
 export default function ({details}) {
     const {name, age, picture, city, traits, price} = details;
-    const {auth, activity,duration, selectFriend} = useContext(GlobalContext)
-
+    const {auth, activity, duration, selectFriend} = useContext(GlobalContext)
+    const [message, setMessage] = useState(" ")
     const nav = useNavigate()
 
 
@@ -26,10 +27,9 @@ export default function ({details}) {
             <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
-                <div id="button-div">
-                        <button  onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
-                </div>
+                <ShowButton/>
             </div>
+            <p id={"message-p"}>{message}</p>
         </div>
     }
     function DropDownMenu(){
@@ -59,13 +59,28 @@ export default function ({details}) {
             console.log("Price change?")
         }
     }
+
+    function showLoginNotification() {
+        setMessage("You have to login before you can hire a friend")
+    }
     function hireFriend(details){
+        showLoginNotification()
         if(auth.loggedIn){
             selectFriend.push(details)
             console.log(selectFriend)
             nav('/userconfirmation')
         }
     }
+
+    function ShowButton() {
+        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return <DeleteFriendComponent/>
+        }
+            return <div id="button-div">
+                <button  onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
+            </div>
+        }
+
 }
 
 
