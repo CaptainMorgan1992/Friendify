@@ -55,7 +55,7 @@ export default function ({orderFriendDetails}) {
         submitOrder(checkUser,orderFriendDetails,activity,time)
         console.log(submitOrder)
         setTimer(40)
-        setConfirmed("Your booking has been confirmed")
+        setConfirmed(<i class="fa-regular fa-face-smile fa-spin"></i>)
         //setBooked(new Date().getMonth())
         const intervalId = setInterval(() => {
             setTimer(timer => timer - 1);
