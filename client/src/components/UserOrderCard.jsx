@@ -3,18 +3,18 @@ import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 
 
-export default function ({orderDetails}) {
-    const {activity, checkUser, submitOrder, additionalService} = useContext(GlobalContext)
+export default function ({orderFriendDetails}) {
+    const {activity, checkUser, submitOrder,time,additionalService} = useContext(GlobalContext)
     const [timer, setTimer] = useState()
     const [confirmed, setConfirmed] = useState()
-    //const [booked, setBooked] = useState(new Date())
-    const {name,picture, city, price} = orderDetails;
+    const {name,picture, city, price} = orderFriendDetails;
     let {additionalServicePrice} = calcPrice();
 
     useEffect(() => {
 
     }, []);
-    return <div id={'confirmation-div'}>
+    return <>
+       <div id={'confirmation-div'}>
             <h2>Confirm your booking</h2>
         <img id="detailedPicture" alt={"picture of a friend"} src={picture}/>
             <div id='confirmation-details'>
@@ -26,12 +26,16 @@ export default function ({orderDetails}) {
                 {checkUser.map(user => <h4>Booked by {user}</h4>)}
                 <h4>Need help?: Call 042-222-33-22</h4>
                 <h4>Total cost: {price + additionalServicePrice}kr </h4>
-                <h4>Duration: 2 hours </h4>
+               {time.map(clock => <h4>Time: {clock}:00</h4>)}
+				 <h4>Duration: 2 hours </h4>
+                <p>Need help?: Call 042-222-33-22</p>
+
                 <button onClick={confirmBooking}>Confirm booking</button>
                 <h4>Time until arrival:{timer} </h4>
                 <h4>{confirmed}</h4>
             </div>
-        </div>
+
+        </div> </>
 
 
 
@@ -48,7 +52,7 @@ export default function ({orderDetails}) {
 
     }
     function confirmBooking(){
-        submitOrder(checkUser,orderDetails,activity)
+        submitOrder(checkUser,orderFriendDetails,activity,time)
         console.log(submitOrder)
         setTimer(40)
         setConfirmed("Your booking has been confirmed")
@@ -60,7 +64,6 @@ export default function ({orderDetails}) {
         if(timer === 0){
             return () => clearInterval(intervalId);
         }
-
 
 
     }
