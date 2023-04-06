@@ -57,13 +57,13 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-    const updateInfo = async (name, email, phonenumber, password, city) => {
+    const updateInfo = async (id, name, email, phonenumber, password, city) => {
         const response = await fetch('/api/users/:id', {
             method: "PATCH",
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name, email, phonenumber, password, city})
+            body: JSON.stringify({id, name, email, phonenumber, password, city})
         })
-        void checkAuth()
+       // void checkAuth()
         const result = await response.json()
         console.log(result)
     }
