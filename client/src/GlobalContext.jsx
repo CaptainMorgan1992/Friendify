@@ -42,7 +42,7 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         console.log('auth state: ', result)
         setAuth(result)
-        checkUser.push(result.name)
+       // checkUser.push(result.name)
     }
 
     const submitLogin = async (email, password) => {
@@ -83,6 +83,18 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
+
+    const updateInfo = async (userId, user) => {
+        const response = await fetch(`/api/users/${userId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({user})
+        })
+        const result = await response.json()
+        console.log(result)
+    }
+
+
     const registerFriends = async (traits, name, age, price, picture, city) => {
         const response = await fetch("/api/friends", {
             method: "POST",
@@ -93,17 +105,6 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-
-    /* const updatePassword = async () => {
-         const response = await fetch(`/api/users/${userId}/password`, {
-             method: 'PATCH',
-             headers: {'Content-Type': 'application/json'},
-             body: JSON.stringify({oldPassword, newPassword}),
-         });
-
-         const result = await response.json()
-         console.log(result)
-     }*/
 
     return (
         <GlobalContext.Provider value={{
@@ -125,7 +126,8 @@ export const GlobalProvider = ({children}) => {
             setCheckUser,
             register,
 			registerFriends,
-            submitOrder
+            submitOrder,
+            updateInfo
         }}>
             {children}
         </GlobalContext.Provider>

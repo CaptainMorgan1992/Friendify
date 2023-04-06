@@ -1,21 +1,27 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
-export default function () {
+export default function ({userId}) {
     const {updateInfo} = useContext(GlobalContext)
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("");
-    const [phonenumber, setPhoneNumber] = useState("");
-    const [password, setPassword] = useState("")
-    const [city, setCity] = useState("");
+    const [user,setUser] = useState('')
+
+
+    useEffect( () => { const fetchUser = async () =>{
+            const response = await fetch(`api/users/${userId}`)
+            const result = await response.json()
+            setUser(result)
+        };
+        fetchUser()
+    }, [userId])
 
 
     const updateUser = (e) => {
         e.preventDefault()
-        if (!name || !email || !password || !city) {
+        if (!user) {
             return console.log('fields cannot be empty!');
         }
-        updateInfo(name, email, phonenumber, password, city)
+        updateInfo(userId, user)
+        console.log(user)
     }
 
 
@@ -24,28 +30,28 @@ export default function () {
             <form onSubmit={updateUser}>
                 <input placeholder={'Name'}
                        type={'name'}
-                       value={name}
-                       onChange={e => setName(e.target.value)}/>
+                       value={user.name}
+                       onChange={e => setUser(e.target.value)}/>
 
                 <input placeholder={'Email'}
                        type={'email'}
-                       value={email}
-                       onChange={e => setEmail(e.target.value)}/>
+                       value={user.email}
+                       onChange={e => setUser(e.target.value)}/>
 
                 <input placeholder={'Phonenumber'}
                        type={'number'}
-                       value={phonenumber}
-                       onChange={e => setPhoneNumber(e.target.value)}/>
+                       value={user.phonenumber}
+                       onChange={e => setUser(e.target.value)}/>
 
                 <input placeholder={'********'}
                        type={'password'}
-                       value={password}
-                       onChange={e => setPassword(e.target.value)}/>
+                       value={user.password}
+                       onChange={e => setUser(e.target.value)}/>
 
-                <input placeholder={'City'}
+                <input placeholder={'city'}
                        type={'text'}
-                       value={city}
-                       onChange={e => setCity(e.target.value)}/>
+                       value={user.city}
+                       onChange={e => setUser(e.target.value)}/>
 
                 <button type={'submit'}>Update</button>
             </form>
