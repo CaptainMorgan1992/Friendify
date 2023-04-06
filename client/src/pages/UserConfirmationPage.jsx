@@ -3,7 +3,7 @@ import FriendCard from "../components/FriendCard.jsx";
 import "../styles/bookingconfirmation.css"
 import GlobalContext from "../GlobalContext.jsx";
 import FriendCardDetailed from "../components/FriendCardDetailed.jsx";
-import OrderCard from "../components/OrderCard.jsx";
+import OrderCard from "../components/UserOrderCard.jsx";
 
 export default function () {
 const {selectFriend} = useContext(GlobalContext)

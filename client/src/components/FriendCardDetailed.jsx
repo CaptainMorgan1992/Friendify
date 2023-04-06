@@ -11,14 +11,15 @@ export default function ({details}) {
 
     const nav = useNavigate()
 
+
     return <HireAFriend/>
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
-            <h2>{name}</h2>
+            <h2 id={"h2-detailed-friendCard"}>{name}</h2>
             <img id="detailedPicture" alt={"picture of a friend"} src={picture}/>
-            <p id="ageParagraph">{age}</p>
+            <p id="ageParagraph">{age} years old</p>
             <p id="cityParagraph">{city}</p>
-            <p id="priceParagraph">{price}kr</p>
+            <p id="priceParagraph">{price} SEK</p>
             <p id="priceParagraph">Duration: 2 hours</p>
             <p className="traitsParagraph">{traits[0]} </p>
             <p className="traitsParagraph">{traits[1]} </p>

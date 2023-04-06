@@ -1,14 +1,8 @@
-/*
-
-return <div id={'detailed-friend-card'}>
-        <h2>{name}</h2>
-        <img id="detailedPicture" src={picture}/>
-        <p id="ageParagraph">{age}</p>
-        <p id="cityParagraph">{city}</p>
-        <p id="priceParagraph">{price}</p>
-        <p id="traitsParagraph">{traits}</p>
-    </div>
- */
+#h2-detailed-friendCard {
+    margin: 1%;
+    color: #545353;
+    text-shadow: 1px 1px 1px rgba(177, 171, 189, 0.36);
+}
 
 #detailed-friend-card {
     display: flex;
@@ -20,28 +14,37 @@ return <div id={'detailed-friend-card'}>
     padding: 1%;
     background-color: #fff4d2;
     border-radius: 1rem;
-    box-shadow: 5px 5px 5px rgb(146, 167, 234);
+    box-shadow: 4px 5px 5px rgb(116, 135, 187);
 }
 
 #detailedPicture {
     width: 80px;
     height: 80px;
+    margin: 2%;
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
 }
 
 #ageParagraph {
-
+margin: 1%;
 }
 
 #cityParagraph {
-
+    margin: 0.5%;
 }
 
 #priceParagraph {
-
+    margin: 0.5%;
 }
 
-#traitsParagraph {
+#standing-area {
+    margin-top: 1%;
+}
+
+.traitsParagraph {
  letter-spacing: 0.1rem;
+    margin: 0.5%;
+    color: #92a7ea;
 }
 
 .booking-confirmation-button {

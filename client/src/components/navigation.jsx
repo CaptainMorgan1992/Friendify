@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton.jsx";
 import {useContext} from "react";
 import GlobalContext from "../GlobalContext.jsx";
+import AddFriendButton from "./AddFriendButton.jsx";
 
 
 export default function (){
@@ -16,10 +17,14 @@ export default function (){
         </Link>
         <ShowProfile/>
         <ShowLogoutButton/>
+        <ShowAddFriendButton/>
     </nav>
 
     function ShowLogoutButton() {
-        if (auth.loggedIn === true) return <LogoutButton/>
+        if (auth.loggedIn === true) {
+            return <Link to={"/"}>
+            <LogoutButton/>
+            </Link>}
         else return <>
             <Link to="/login">
                 <button>Log in</button>
@@ -30,6 +35,15 @@ export default function (){
             </Link>
         </>
 
+    }
+
+    function ShowAddFriendButton() {
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return <Link to="/addfriend">
+             <AddFriendButton/>
+            </Link>
+        }
+        else return null
     }
 
     function ShowProfile () {
