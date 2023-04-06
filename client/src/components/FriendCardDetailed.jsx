@@ -39,9 +39,9 @@ export default function ({details}) {
             </select>
             <select onChange={chooseTime}>
                 <option>Select a value</option>
-                <option value={16}>16.00</option>
-                <option value={18}>18.00</option>
-                <option value={20}>20.00</option>
+                <option>16.00</option>
+                <option>18.00</option>
+                <option>20.00</option>
             </select>
         </div>
     }
@@ -51,7 +51,6 @@ export default function ({details}) {
         console.log(activity)
     }
 
-   // does not get pushed to database
     function chooseTime(e){
         e.preventDefault()
         time.push(e.target.value)

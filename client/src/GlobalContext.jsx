@@ -66,6 +66,16 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
+    const adminConfirmOrder = async (_id,friend, user,activity,time,confirmed) =>{
+        const response = await fetch(`/api/orders/${_id}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({_id,friend,user,activity,time,confirmed})
+        })
+        const result = response.json()
+        console.log(result)
+    }
+
     const logout = async () => {
         const response = await fetch('/api/login', {
             method: "DELETE"
@@ -127,7 +137,8 @@ export const GlobalProvider = ({children}) => {
             setCheckUser,
             register,
 			registerFriends,
-            submitOrder
+            submitOrder,
+            adminConfirmOrder
         }}>
             {children}
         </GlobalContext.Provider>

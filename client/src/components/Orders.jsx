@@ -17,7 +17,7 @@ export default function () {
 
 function getUnconfirmedOrders(){
      for (let i = 0; i<orders.length; i++){
-         if (orders[i].confirmed === false && auth.loggedIn){
+         if (orders[i].confirmed === false && auth.loggedIn && auth.email === "johnnyjohnson@example.com"){
         return orders.map(order => <AdminOrderCard confirmOrder={order}/>)
          }
      }

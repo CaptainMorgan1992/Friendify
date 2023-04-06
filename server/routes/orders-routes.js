@@ -19,8 +19,7 @@ ordersRoutes.post('/', async (req, res) => {
     order.friend = req.body.friend
     order.user = req.body.user
     order.activity = req.body.activity
-    order.location = req.body.location
-    order.duration = req.body.duration
+    order.time = req.body.time
 
     await order.save()
     res.status(201)
@@ -47,11 +46,11 @@ ordersRoutes.get('/:id', async (req, res) => {
     res.json(order)
 })
 
-ordersRoutes.put('/:id', async (req, res) => {
+ordersRoutes.put('/:_id', async (req, res) => {
     const order = await mongoose.models.orders.findByIdAndUpdate(req.params.id, req.body)
-    res.json({"updated": "order"})
     res.json(order)
 })
+
 ordersRoutes.delete('/:id', async (req, res) => {
     await mongoose.models.orders.findByIdAndDelete(req.params.id)
     res.json({"deleted": "order"})
