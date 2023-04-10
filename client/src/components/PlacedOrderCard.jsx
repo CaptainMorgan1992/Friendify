@@ -2,13 +2,15 @@ import React, {useContext, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
 export default function ({confirmOrder}){
-    const {friend,user,activity,time,confirmed} = confirmOrder;
+    const {friend,user,activity,time,confirmed,_id} = confirmOrder;
     const {adminConfirmOrder,order} = useContext(GlobalContext)
     const [adminConfirm, setAdminConfirm] = useState(confirmed)
     return <div id={'detailed-friend-card'} >
         <p id="priceParagraph">Duration: 2 hours</p>
         <p id="traitsParagraph">Activity:{activity}</p>
+        <p id="traitsParagraph">Extra stuff?? XX:{}</p>
         <p id="traitsParagraph">Time: {time}</p>
+        <p id="traitsParagraph">orderID: {_id}</p>
         <p id="traitsParagraph">Confirmation: {adminConfirm.toString()}</p>
         <ul>
             {friend.map((friendItem) => (
@@ -42,8 +44,8 @@ export default function ({confirmOrder}){
         console.log("Send confirmation")
         //confirmOrder.confirmed = true
         setAdminConfirm(true)
-        //adminConfirmOrder(friend,user,activity,time,true)
-        console.log(friend,user,activity,time,true)
+        adminConfirmOrder(_id,friend,user,activity,time,true)
+        console.log(_id,friend,user,activity,time,true)
     }
 
 }

@@ -8,14 +8,15 @@ import PlacedOrderCard from "./PlacedOrderCard.jsx";
 
 export default function () {
     const {orders,auth,getCurrentUser,currentUser} = useContext(GlobalContext)
-
+    console.log(orders)
+    console.log(currentUser)
     useEffect( () => {
         getCurrentUser()
     }, [])
-
     return <div>
       <h2>Orders</h2>
         {getUnconfirmedOrders()}
+        {getUsersConfirmedOrders()}
     </div>
 
 function getUnconfirmedOrders(){
@@ -26,17 +27,24 @@ function getUnconfirmedOrders(){
         });
 
         return filteredOrders.map(order => <PlacedOrderCard confirmOrder={order}/>);
+
     }
 
-/*function getUsersConfirmedOrders(){
-    const filteredOrders = orders.filter(order => {
-        if (order.confirmed === true && currentUser) {
-            return true;
-        }
-    });
+    function getUsersConfirmedOrders() {
+        const filteredOrders = orders.filter(order => {
+            console.log(order.user._id)
+            console.log(currentUser._id)
+            if (order.confirmed === true && order.user._id === currentUser._id) {
+                return true;
+            }
+            return false;
+        });
 
-    return filteredOrders.map(order => <AdminOrderCard confirmOrder={order}/>);
+        return filteredOrders.map(order => <PlacedOrderCard confirmOrder={order}/>);
+    }
+
+
 }
-}*/
-}
+
+
 
