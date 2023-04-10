@@ -42,7 +42,6 @@ export default function ({confirmOrder}){
 
     function sendConfirmation(){
         console.log("Send confirmation")
-        //confirmOrder.confirmed = true
         setAdminConfirm(true)
         adminConfirmOrder(_id,friend,user,activity,time,true)
         console.log(_id,friend,user,activity,time,true)
