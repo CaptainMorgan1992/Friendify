@@ -38,11 +38,9 @@ friendsRoutes.get('/:id', async (req, res) => {
 })
 friendsRoutes.get('/', async (req,res) =>{
     const friend = await mongoose.models.friends.find()
-    console.log(friend)
     res.status(200)
     res.json(friend)
 })
-
 friendsRoutes.patch('/:id', async(req, res) => {
     const friend = await mongoose.models.friends.findByIdAndUpdate(req.params.id, req.body)
     if(!friend) {

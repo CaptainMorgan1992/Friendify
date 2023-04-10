@@ -1,42 +1,52 @@
-import {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
-export default function ({userId}) {
-    const {updatePassword} = useContext(GlobalContext)
-    const [oldPassword, setOldPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+export default function () {
+    const {currentUser, setCurrentUser, updateInfo, getCurrentUser, auth} = useContext(GlobalContext)
 
+    useEffect( () => {
+        getCurrentUser()
+    }, [])
 
-    const updateThePassword = (e) => {
+    const updateUser = (e) => {
         e.preventDefault()
-        if (newPassword !== confirmPassword) {
-            console.log('Passwords do not match.');
+        if (!currentUser) {
+            return console.log('fields cannot be empty!');
         }
-        updatePassword()
-        console.log('FUNGERAR DETTA')
+        updateInfo(currentUser)
+        console.log(currentUser)
     }
+    
+    return !currentUser ? null: <>
+        <h1>Update Account</h1>
+            <form onSubmit={updateUser}>
+                <input placeholder={'Name'}
+                       type={'name'}
+                       value={currentUser.name}
+                       onChange={e => setCurrentUser(e.target.value)}/>
+
+                <input placeholder={'Email'}
+                       type={'email'}
+                       value={currentUser.email}
+                       onChange={e => setCurrentUser(e.target.value)}/>
+
+                <input placeholder={'Phonenumber'}
+                       type={'number'}
+                       value={currentUser.phonenumber}
+                       onChange={e => setCurrentUser(e.target.value)}/>
+
+                <input placeholder={'********'}
+                       type={'password'}
+                       value={currentUser.password}
+                       onChange={e => setCurrentUser(e.target.value)}/>
 
 
-    return <form onSubmit={updateThePassword}>
+                <input placeholder={'city'}
+                       type={'text'}
+                       value={currentUser.city}
+                       onChange={e => setCurrentUser(e.target.value)}/>
 
-        <input placeholder={'Current Password'}
-               type={'password'}
-               value={oldPassword}
-               onChange={e => setOldPassword(e.target.value)}/>
-
-        <input placeholder={'New Password'}
-               type={'password'}
-               value={newPassword}
-               onChange={e => setNewPassword(e.target.value)}/>
-
-        <input placeholder={'Confirm New Password'}
-               type={'password'}
-               value={confirmPassword}
-               onChange={e => setConfirmPassword(e.target.value)}/>
-
-        <button type={'submit'}>Update Password</button>
-
-    </form>
-
+                <button type={'submit'}>Update</button>
+            </form>
+    </>
 }
