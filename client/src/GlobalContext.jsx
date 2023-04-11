@@ -11,7 +11,7 @@ export const GlobalProvider = ({children}) => {
     const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
     const [additionalService, setAdditionalService] = useState([])
-
+    const [deniedOrder, setDeniedOrder] = useState([])
 
     useEffect(() => {
         void checkAuth()
@@ -57,11 +57,11 @@ export const GlobalProvider = ({children}) => {
         void getCurrentUser()
     }
 
-    const submitOrder = async (user,friend,activity,time) =>{
+    const submitOrder = async (user,friend,activity,time,additionalService) =>{
         const response = await fetch("/api/orders", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({user,friend,activity,time})
+            body: JSON.stringify({user,friend,activity,time,additionalService})
         })
         const result = response.json()
         console.log(result)
@@ -163,7 +163,10 @@ export const GlobalProvider = ({children}) => {
             currentUser,
             setCurrentUser,
             getCurrentUser,
-			deleteFriend
+			deleteFriend,
+            deniedOrder,
+            setDeniedOrder
+
         }}>
             {children}
         </GlobalContext.Provider>

@@ -8,6 +8,7 @@ const orderSchema = new Schema({
     user: [],
     activity: [],
     time: [],
+    additionalService: [],
     confirmed: {type:Boolean, default:false}
 
 })
@@ -20,6 +21,7 @@ ordersRoutes.post('/', async (req, res) => {
     order.user = req.body.user
     order.activity = req.body.activity
     order.time = req.body.time
+    order.additionalService = req.body.additionalService
 
     await order.save()
     res.status(201)

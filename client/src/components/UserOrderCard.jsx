@@ -52,8 +52,6 @@ export default function ({orderFriendDetails}) {
 
         </div> </>
 
-
-
     function calcPrice(){
         let additionalServicePrice = 0;
         if (additionalService.length > 0) {
@@ -67,7 +65,7 @@ export default function ({orderFriendDetails}) {
 
     }
     function confirmBooking(){
-        submitOrder(currentUser,orderFriendDetails,activity,time)
+        submitOrder(currentUser,orderFriendDetails,activity,time,additionalService)
         console.log(submitOrder)
         setTimer(40)
         setConfirmed(<i class="fa-regular fa-face-smile fa-spin"></i>)
