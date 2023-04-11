@@ -15,7 +15,9 @@ export default function ({confirmOrder}){
         <p id="traitsParagraph">Extra Service: {additionalService}</p>
         <p id="traitsParagraph">Time: {time}</p>
         <p id="traitsParagraph">orderID: {_id}</p>
-        <p id="traitsParagraph">Confirmation: {adminConfirm.toString()}</p>
+        <p id="traitsParagraph">Accepted: {adminConfirm.toString()}</p>
+        <p id="traitsParagraph">Denied: {sendDeniedOrder()}</p>
+
         <ul>
             {friend.map((friendItem) => (
                 <li key={friendItem._id}>
@@ -54,9 +56,14 @@ export default function ({confirmOrder}){
             }
     }
 
-    function sendDeniedOrder(){
+    /*function sendDeniedOrder(){
+        setDeniedOrder(true)
 
-    }
+        if (setDeniedOrder){
+            console.log(deniedOrder.toString())
+            return deniedOrder.toString()
+        }
+    }*/
     function sendConfirmation(){
         console.log("Send confirmation")
         setAdminConfirm(true)

@@ -11,7 +11,7 @@ export const GlobalProvider = ({children}) => {
     const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
     const [additionalService, setAdditionalService] = useState([])
-    const [deniedOrder, setDeniedOrder] = useState([])
+    const [deniedOrder, setDeniedOrder] = useState()
 
     useEffect(() => {
         void checkAuth()
