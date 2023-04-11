@@ -6,13 +6,12 @@ import "../styles/bookingconfirmation.css"
 
 
 
-export default function ({details}) {
-    const {name, age, picture, city, traits, price} = details;
-    const {auth, activity,duration, selectFriend, additionalService} = useContext(GlobalContext)
+export default function ({friendDetails}) {
+    const {name, age, picture, city, traits, price} = friendDetails;
+    const {auth, activity, selectFriend, additionalService,time} = useContext(GlobalContext)
 
     const nav = useNavigate()
-
-
+    
     return <HireAFriend/>
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
@@ -29,7 +28,7 @@ export default function ({details}) {
                 <DropDownMenu/>
                 <AdditionalServices/>
                 <div id="button-div">
-                        <button  onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
+                        <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
                 </div>
             </div>
         </div>
@@ -62,6 +61,12 @@ export default function ({details}) {
                 <option>Swim in a park</option>
                 <option>Study programming</option>
             </select>
+            <select onChange={chooseTime}>
+                <option>Select a value</option>
+                <option>16.00</option>
+                <option>18.00</option>
+                <option>20.00</option>
+            </select>
         </div>
     }
     function chooseActivity(e){
@@ -74,31 +79,19 @@ export default function ({details}) {
         additionalService.push(e.target.value)
         console.log(additionalService)
     }
-
-
-
-    // Removed at the m
-    //
-    // oment. duration is hardcoded
-    function chooseDuration(e){
+    function chooseTime(e){
         e.preventDefault()
-        duration.push(e.target.value)
-        console.log(duration)
-        if(duration.includes("2")){
-            console.log("Price change?")
-        } else if(duration.includes("4")){
-            console.log("Price change?")
-        }
+        time.push(e.target.value)
+        console.log(time)
     }
-    function hireFriend(details){
+    function hireFriend(friendDetails){
         if(auth.loggedIn){
-            selectFriend.push(details)
+            selectFriend.push(friendDetails)
             console.log(selectFriend)
             nav('/userconfirmation')
         }
     }
+
 }
-
-
 
 

@@ -10,8 +10,9 @@ const {selectFriend} = useContext(GlobalContext)
 
     return <div>
         {
-            selectFriend.map(orders => <OrderCard orderDetails={orders}/>)
+            selectFriend.map(orders => <OrderCard orderFriendDetails={orders}/>)
         }
+
     </div>
 
 
