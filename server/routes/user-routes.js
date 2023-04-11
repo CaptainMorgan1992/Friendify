@@ -1,6 +1,7 @@
 import Router from 'express'
 import mongoose, {Schema} from "mongoose";
 import getHash from "../utils/hash.js";
+import session from "express-session"
 
 const usersRoutes = Router()
 
@@ -18,6 +19,16 @@ mongoose.model('users', userSchema)
 usersRoutes.get('/', async (req, res) => {
     const user = await mongoose.models.users.find()
     res.json(user)
+})
+
+usersRoutes.get('/current', async (req, res) => {
+    if(req.session.user) {
+        const user = await mongoose.models.users.findById(req.session.user._id)
+        res.json(user)
+    } else {
+        res.status(401)
+        res.json({loggedIn: false})
+    }
 })
 
 usersRoutes.get('/:id', async (req, res) => {
@@ -43,13 +54,12 @@ usersRoutes.delete('/:id', async (req, res) => {
     res.json(user)
 })
 
-usersRoutes.patch('/:id', async (req, res) => {
-    const user = await mongoose.models.users.findByIdAndUpdate(req.params.id, req.body)
+usersRoutes.put('/:_id', async (req, res) => {
+    const user = await mongoose.models.users.findByIdAndUpdate(req.params._id, req.body)
     if(!user) {
         return res.status(404).json({message: "User not found"})
     }
 
-    user.password = getHash(req.body.password)
     await user.save()
     res.json(user)
 })

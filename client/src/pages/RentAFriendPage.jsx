@@ -7,11 +7,9 @@ import "../styles/FriendCardDetailed.css"
 
 export default function (){
     const {friends} = useContext(GlobalContext)
-
     return <div>
-
         {
-            friends.map(friend => <FriendCardDetailed details={friend} key={friend.id}/>)//Ask about friends ID
+            friends.map(friend => <FriendCardDetailed friendDetails={friend} key={friend.id}/>)//Ask about friends ID
         }
 
     </div>

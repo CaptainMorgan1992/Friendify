@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
@@ -6,13 +6,14 @@ import "../styles/bookingconfirmation.css"
 import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 
-export default function ({details}) {
-    const {name, age, picture, city, traits, price} = details;
-    const {auth, activity, duration, selectFriend} = useContext(GlobalContext)
-    const [message, setMessage] = useState(" ")
+
+export default function ({friendDetails}) {
+    const {name, age, picture, city, traits, price} = friendDetails;
+    const {auth, activity, selectFriend, additionalService,time} = useContext(GlobalContext)
+	const [message, setMessage] = useState(" ")
+
     const nav = useNavigate()
-
-
+    
     return <HireAFriend/>
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
@@ -27,10 +28,31 @@ export default function ({details}) {
             <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
+                <AdditionalServices/>
                 <ShowButton/>
             </div>
             <p id={"message-p"}>{message}</p>
         </div>
+    }
+
+    function AdditionalServices() {
+        return <div>
+            <div id={"additional-services-titles"}>
+                <h4>Add an additional service (+100kr) </h4>
+                <h5>Your friend can bring:</h5>
+            </div>
+            <div id={"additional-services-option"}>
+                <select onChange={chooseAdditionalService}>
+                    <option>Select a value</option>
+                    <option>Flowers</option>
+                    <option>A cup of coffee</option>
+                    <option>A dog</option>
+                    <option>A grandma</option>
+                    <option>Dogge Doggelito</option>
+                </select>
+            </div>
+        </div>
+
     }
     function DropDownMenu(){
         return <div>
@@ -40,6 +62,12 @@ export default function ({details}) {
                 <option>Swim in a park</option>
                 <option>Study programming</option>
             </select>
+            <select onChange={chooseTime}>
+                <option>Select a value</option>
+                <option>16.00</option>
+                <option>18.00</option>
+                <option>20.00</option>
+            </select>
         </div>
     }
     function chooseActivity(e){
@@ -47,26 +75,19 @@ export default function ({details}) {
         activity.push(e.target.value)
         console.log(activity)
     }
-
-    // Removed at the moment. duration is hardcoded
-    function chooseDuration(e){
+    function chooseAdditionalService(e){
         e.preventDefault()
-        duration.push(e.target.value)
-        console.log(duration)
-        if(duration.includes("2")){
-            console.log("Price change?")
-        } else if(duration.includes("4")){
-            console.log("Price change?")
-        }
+        additionalService.push(e.target.value)
+        console.log(additionalService)
     }
-
-    function showLoginNotification() {
-        setMessage("You have to login before you can hire a friend")
+    function chooseTime(e){
+        e.preventDefault()
+        time.push(e.target.value)
+        console.log(time)
     }
-    function hireFriend(details){
-        showLoginNotification()
+    function hireFriend(friendDetails){
         if(auth.loggedIn){
-            selectFriend.push(details)
+            selectFriend.push(friendDetails)
             console.log(selectFriend)
             nav('/userconfirmation')
         }
@@ -76,13 +97,11 @@ export default function ({details}) {
         if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
             return <DeleteFriendComponent/>
         }
-            return <div id="button-div">
-                <button  onClick={e => hireFriend(details)} className={"booking-confirmation-button"}>Hire friend</button>
-            </div>
+            return    <div id="button-div">
+                        <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
+                </div>
         }
 
 }
-
-
 
 

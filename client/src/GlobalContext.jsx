@@ -5,17 +5,17 @@ export const GlobalProvider = ({children}) => {
 	const [orders, setOrders] = useState([])
 	const [selectFriend, setSelectFriend] = useState([])
     const [activity, setActivity] = useState([])
-    const [duration, setDuration] = useState([])
+    const [time, setTime] = useState([])
     const [friends, setFriends] = useState([])
-    const [users, setUsers] = useState([])
+    const [currentUser, setCurrentUser] = useState(null)
     const [checkUser, setCheckUser] = useState([])
     const [auth, setAuth] = useState({loggedIn: false})
+    const [additionalService, setAdditionalService] = useState([])
 
 
     useEffect(() => {
-        void checkAuth()  // This code calls the authentication twice. Not needed? /M
+        void checkAuth()
         void loadFriends()
-        void loadUsers()
         void loadOrders()
     }, [])
 
@@ -24,10 +24,10 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         setFriends(result)
     }
-    const loadUsers = async () =>{
-        const response = await fetch('/api/users')
+    const getCurrentUser = async () =>{
+        const response = await fetch('/api/users/current')
         const result = await response.json()
-        setUsers(result)
+        setCurrentUser(result)
     }
 
     const loadOrders = async () =>{
@@ -42,6 +42,7 @@ export const GlobalProvider = ({children}) => {
         const result = await response.json()
         console.log('auth state: ', result)
         setAuth(result)
+        console.log(result)
         checkUser.push(result.name)
     }
 
@@ -51,14 +52,26 @@ export const GlobalProvider = ({children}) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password})
         })
+        console.log(response)
         void checkAuth()
+        void getCurrentUser()
     }
 
-    const submitOrder = async (user,friend, activity,location,duration) =>{
+    const submitOrder = async (user,friend,activity,time) =>{
         const response = await fetch("/api/orders", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({user,friend, activity,location,duration})
+            body: JSON.stringify({user,friend,activity,time})
+        })
+        const result = response.json()
+        console.log(result)
+    }
+
+    const adminConfirmOrder = async (_id,friend, user,activity,time,confirmed) =>{
+        const response = await fetch(`/api/orders/${_id}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({_id,friend,user,activity,time,confirmed})
         })
         const result = response.json()
         console.log(result)
@@ -74,7 +87,7 @@ export const GlobalProvider = ({children}) => {
     }
 
     const register = async (name, email, phonenumber, password, city) => {
-        const response = await fetch("/api/users", {
+        const response = await fetch(`/api/users`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name, email, phonenumber, password, city})
@@ -83,7 +96,21 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-    const registerFriend = async (traits, name, age, price, picture, city) => {
+
+    const updateInfo = async (currentUser) => {
+        console.log(currentUser)
+        const response = await fetch(`/api/users/${currentUser._id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(currentUser)
+        })
+        console.log(response)
+        const result = await response.json()
+        console.log(result)
+    }
+
+
+    const registerFriends = async (traits, name, age, price, picture, city) => {
         const response = await fetch("/api/friends", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -109,21 +136,9 @@ export const GlobalProvider = ({children}) => {
     }
 
 
-    /* const updatePassword = async () => {
-         const response = await fetch(`/api/users/${userId}/password`, {
-             method: 'PATCH',
-             headers: {'Content-Type': 'application/json'},
-             body: JSON.stringify({oldPassword, newPassword}),
-         });
-
-         const result = await response.json()
-         console.log(result)
-     }*/
-
     return (
         <GlobalContext.Provider value={{
             friends,
-            users,
             setFriends,
             auth,
             setAuth,
@@ -134,14 +149,21 @@ export const GlobalProvider = ({children}) => {
             selectFriend,
             activity,
             setActivity,
-            duration,
-            setDuration,
+            time,
+            setTime,
             checkUser,
             setCheckUser,
             register,
 			registerFriend,
             submitOrder,
-            deleteFriend
+            adminConfirmOrder,
+			additionalService,
+            setAdditionalService, 
+			updateInfo,
+            currentUser,
+            setCurrentUser,
+            getCurrentUser,
+			deleteFriend
         }}>
             {children}
         </GlobalContext.Provider>
