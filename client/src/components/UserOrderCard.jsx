@@ -11,12 +11,10 @@ export default function ({orderFriendDetails}) {
         additionalService,
         getCurrentUser,
         currentUser,
-        auth,
-        orders
     } = useContext(GlobalContext)
-    const [timer, setTimer] = useState()
-    const [confirmed, setConfirmed] = useState()
+    const [confirmedIcon, setConfirmedIcon] = useState()
     const [confirmedText, setConfirmedText] = useState()
+    const [removeButton, setRemoveButton] = useState(false)
     const {name,picture, city, price} = orderFriendDetails;
     let {additionalServicePrice} = calcPrice();
 
@@ -37,14 +35,12 @@ export default function ({orderFriendDetails}) {
                 <h4>Location:{city}</h4>
               <h4>Your additional service: {lastPickedAdditionalService()}</h4>
                 <h4>Total cost: {price + additionalServicePrice}kr </h4>
-                 <h4>Time: {time}:00</h4>
+                 <h4>Time: {time}</h4>
 				 <h4>Duration: 2 hours </h4>
                 <p>Need help?: Call 042-222-33-22</p>
-
-                <button onClick={confirmBooking}>Confirm booking</button>
-
+                <button style={{display: removeButton ? "none" : "visible"}} onClick={confirmBooking}>Confirm booking</button>
                 <h4>{confirmedText}</h4>
-                <h4>{confirmed}</h4>
+                <h4>{confirmedIcon}</h4>
 
             </div>
 
@@ -61,13 +57,9 @@ export default function ({orderFriendDetails}) {
 
         return { additionalServicePrice }
     }
-
     function getUser(){
         const currentUserCopy = {...currentUser}
         return currentUserCopy.name
-    }
-    function lastPickedTime(){
-        //return time
     }
     function lastPickedAdditionalService(){
         return additionalService.slice(-1)
@@ -78,19 +70,9 @@ export default function ({orderFriendDetails}) {
     function confirmBooking(){
         submitOrder(currentUser,orderFriendDetails,activity,time,additionalService)
         console.log(submitOrder)
-        setTimer(40)
-        setConfirmed(<i class="fa-regular fa-face-smile fa-spin"></i>)
-        setConfirmedText("We are processing your order")
-        //setBooked(new Date().getMonth())
-        const intervalId = setInterval(() => {
-            setTimer(timer => timer - 1);
-        }, 60000);
-
-        if(timer === 0){
-            return () => clearInterval(intervalId);
-        }
-
-
+        setConfirmedIcon(<i class="fa-regular fa-face-smile fa-spin"></i>)
+        setConfirmedText("Thank you for your order! When your order is confirmed you will see it on your profile page")
+        setRemoveButton(!removeButton)
     }
 
 }
