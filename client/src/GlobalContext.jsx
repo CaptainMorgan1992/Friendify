@@ -122,10 +122,11 @@ export const GlobalProvider = ({children}) => {
 
     const deleteFriend = async (friendDetails) => {
             const response = await fetch(`/api/friends/${friendDetails._id}`, {
-                method: "DELETE"
+                method: "DELETE",
+                body: JSON.stringify(friendDetails)
             })
         const result = await response.json()
-        console.log(result, friendDetails._id)
+        console.log(result, "hej", friendDetails._id)
     }
 
 
