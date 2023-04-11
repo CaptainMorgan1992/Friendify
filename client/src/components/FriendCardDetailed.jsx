@@ -1,14 +1,16 @@
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
 import "../styles/bookingconfirmation.css"
+import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 
 
 export default function ({friendDetails}) {
     const {name, age, picture, city, traits, price} = friendDetails;
     const {auth, activity, selectFriend, additionalService,time} = useContext(GlobalContext)
+	const [message, setMessage] = useState(" ")
 
     const nav = useNavigate()
     
@@ -27,10 +29,9 @@ export default function ({friendDetails}) {
             <div id="standing-area">
                 <DropDownMenu/>
                 <AdditionalServices/>
-                <div id="button-div">
-                        <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
-                </div>
+                <ShowButton/>
             </div>
+            <p id={"message-p"}>{message}</p>
         </div>
     }
 
@@ -91,6 +92,15 @@ export default function ({friendDetails}) {
             nav('/userconfirmation')
         }
     }
+
+    function ShowButton() {
+        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return <DeleteFriendComponent/>
+        }
+            return    <div id="button-div">
+                        <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
+                </div>
+        }
 
 }
 

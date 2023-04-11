@@ -80,6 +80,12 @@ margin: 1%;
     align-items: center;
 }
 
+#message-p {
+    text-align: center;
+    font-size: 0.8rem;
+    margin: 1.5%;
+}
+
 
 #additional-services-option {
     margin:5%;

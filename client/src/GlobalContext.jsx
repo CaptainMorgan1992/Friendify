@@ -120,6 +120,21 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
+    const deleteFriend = async (id) => {
+            const response = await fetch(`/api/friends/${id}`, {
+                method: "DELETE"
+            }).
+            then(response => {
+                if (!response.ok) {
+                    console.log("failed to delete item")
+                }
+                console.log('item deleted successfully')
+            }).
+            catch(error => {
+                console.log("Error deleting item")
+            })
+    }
+
 
     return (
         <GlobalContext.Provider value={{
@@ -147,7 +162,8 @@ export const GlobalProvider = ({children}) => {
 			updateInfo,
             currentUser,
             setCurrentUser,
-            getCurrentUser
+            getCurrentUser,
+			deleteFriend
         }}>
             {children}
         </GlobalContext.Provider>
