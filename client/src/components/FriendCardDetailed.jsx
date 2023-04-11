@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
 import "../styles/bookingconfirmation.css"
-//import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 
 
