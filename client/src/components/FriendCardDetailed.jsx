@@ -38,37 +38,45 @@ export default function ({friendDetails}) {
     }
 
     function AdditionalServices() {
-        return <div>
-            <div id={"additional-services-titles"}>
-                <h4>Add an additional service (+100kr) </h4>
-                <h5>Your friend can bring:</h5>
-            </div>
-            <div id={"additional-services-option"}>
-                <select onChange={chooseAdditionalService}>
-                    <option>Select a value</option>
-                    <option>Flowers</option>
-                    <option>A cup of coffee</option>
-                    <option>A dog</option>
-                    <option>A grandma</option>
-                    <option>Dogge Doggelito</option>
-                </select>
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        } else {
+            return <div>
+                <div id={"additional-services-titles"}>
+                    <h4>Add an additional service (+100kr) </h4>
+                    <h5>Your friend can bring:</h5>
+                </div>
+                <div id={"additional-services-option"}>
+                    <select onChange={chooseAdditionalService}>
+                        <option>Select a value</option>
+                        <option>Flowers</option>
+                        <option>A cup of coffee</option>
+                        <option>A dog</option>
+                        <option>A grandma</option>
+                        <option>Dogge Doggelito</option>
+                    </select>
+                </div>
+
             </div>
 
-        </div>
-
+        }
     }
-    function DropDownMenu(){
-        return <div>
-            <label>Choose activity: </label>
-            <select onChange={chooseActivity}>
-                <option>Select a value</option>
-                <option>Walk in a park</option>
-                <option>Swim in a park</option>
-                <option>Study programming</option>
-            </select>
+    function DropDownMenu() {
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        } else {
+            return <div>
+                <label>Choose activity: </label>
+                <select onChange={chooseActivity}>
+                    <option>Select a value</option>
+                    <option>Walk in a park</option>
+                    <option>Swim in a park</option>
+                    <option>Study programming</option>
+                </select>
 
 
-        </div>
+            </div>
+        }
     }
     function  deleteFriendFromDatabase  (e) {
         e.preventDefault()
@@ -77,15 +85,20 @@ export default function ({friendDetails}) {
     }
 
    function SelectDate(){
-        return <div>
-            <label htmlFor="meeting-time">Choose a time for your appointment:</label>
+        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        }
+        else {
+            return <div>
+                <label htmlFor="meeting-time">Choose a time for your appointment:</label>
 
-            <input onChange={chooseTime} type="datetime-local" id="meeting-time"
-                   name="meeting-time" value={time}
-                   timezone="Europe/Stockholm"
-                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
-                   required />
-        </div>
+                <input onChange={chooseTime} type="datetime-local" id="meeting-time"
+                       name="meeting-time" value={time}
+                       timezone="Europe/Stockholm"
+                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+                       required/>
+            </div>
+        }
     }
 
     function chooseActivity(e){
@@ -122,7 +135,7 @@ export default function ({friendDetails}) {
                 <form onSubmit={deleteFriendFromDatabase}>
                     <button type={'submit'} className={"booking-confirmation-button"}>Delete Friend</button>
                 </form>
-                <p>{message}</p>
+
             </div>
         } else {
             return    <div id="button-div">
