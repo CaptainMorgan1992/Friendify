@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import "../styles/registerfriend.css"
 
 export default function () {
-    const {registerFriend} = useContext(GlobalContext)
+    const {registerFriends} = useContext(GlobalContext)
     const [traits, setTraits] = useState("")
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
@@ -23,7 +23,7 @@ export default function () {
             return console.log('Fields cannot be empty!');
         }
         else
-            registerFriend(traits, name, age, price, picture, city)
+            registerFriends(traits, name, age, price, picture, city)
         HandleRegistration()
     }
 

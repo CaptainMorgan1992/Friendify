@@ -3,17 +3,16 @@ import {useNavigate} from "react-router-dom";
 import React from "react"
 import GlobalContext from "../GlobalContext.jsx";
 import "../styles/bookingconfirmation.css"
-import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 
 
 export default function ({friendDetails}) {
-    const {name, age, picture, city, traits, price} = friendDetails;
-    const {auth, activity, selectFriend, additionalService,time,setTime} = useContext(GlobalContext)
+    const {_id, name, age, picture, city, traits, price} = friendDetails;
+    const {auth, activity, selectFriend, additionalService, deleteFriend, friends, loadFriends,time,setTime} = useContext(GlobalContext)
 	const [message, setMessage] = useState(" ")
 
     const nav = useNavigate()
-    
+    //console.log(_id)
     return <HireAFriend/>
     function HireAFriend(){
         return <div id={'detailed-friend-card'} >
@@ -71,7 +70,13 @@ export default function ({friendDetails}) {
 
         </div>
     }
-    function SelectDate(){
+    function  deleteFriendFromDatabase  (e) {
+        e.preventDefault()
+        deleteFriend(friendDetails)
+        handleDeletion()
+    }
+
+   function SelectDate(){
         return <div>
             <label htmlFor="meeting-time">Choose a time for your appointment:</label>
 
@@ -106,14 +111,24 @@ export default function ({friendDetails}) {
         }
     }
 
+    function handleDeletion() {
+        setMessage("You have successfully deleted the friend from the database")
+    }
+
+
     function ShowButton() {
         if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
-            return <DeleteFriendComponent/>
-        }
+            return <div id="button-div">
+                <form onSubmit={deleteFriendFromDatabase}>
+                    <button type={'submit'} className={"booking-confirmation-button"}>Delete Friend</button>
+                </form>
+                <p>{message}</p>
+            </div>
+        } else {
             return    <div id="button-div">
                         <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
                 </div>
-        }
+        }}
 
 }
 
