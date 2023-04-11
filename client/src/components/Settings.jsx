@@ -48,12 +48,6 @@ export default function () {
                    value={currentUser.phonenumber}
                    onChange={e => setCurrentUserProp({phonenumber: e.target.value})}/>
 
-            <input placeholder={'********'}
-                   type={'password'}
-                   value={currentUser.password}
-                   onChange={e => setCurrentUserProp({password : e.target.value})}/>
-
-
             <input placeholder={'city'}
                    type={'text'}
                    value={currentUser.city}

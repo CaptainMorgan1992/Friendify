@@ -1,17 +1,21 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import GlobalContext from "../GlobalContext.jsx";
 
 export default function ({confirmOrder}){
-    const {friend,user,activity,time,confirmed,_id} = confirmOrder;
-    const {adminConfirmOrder,order} = useContext(GlobalContext)
+    const {friend,user,activity,time,confirmed,_id, additionalService} = confirmOrder;
+    const {adminConfirmOrder,orders,getCurrentUser,currentUser,auth, deniedOrder, setDeniedOrder} = useContext(GlobalContext)
     const [adminConfirm, setAdminConfirm] = useState(confirmed)
+    useEffect( () => {
+        getCurrentUser()
+    }, [])
+
     return <div id={'detailed-friend-card'} >
         <p id="priceParagraph">Duration: 2 hours</p>
-        <p id="traitsParagraph">Activity:{activity}</p>
-        <p id="traitsParagraph">Extra stuff?? XX:{}</p>
-        <p id="traitsParagraph">Time: {time}</p>
+        <p id="traitsParagraph">Activities:{activity[activity.length-1]}</p>
+        <p id="traitsParagraph">Extra Services: {additionalService[additionalService.length-1]}</p>
+        <p id="traitsParagraph">Date & Time: {time}</p>
         <p id="traitsParagraph">orderID: {_id}</p>
-        <p id="traitsParagraph">Confirmation: {adminConfirm.toString()}</p>
+        <p id="traitsParagraph">Accepted: {adminConfirm.toString()}</p>
         <ul>
             {friend.map((friendItem) => (
                 <li key={friendItem._id}>
@@ -37,8 +41,17 @@ export default function ({confirmOrder}){
 
             </ul>
         </ul>
-        <button onClick={sendConfirmation}>Confirm order</button>
+        {ConfirmButton()}
     </div>
+
+
+    function ConfirmButton(){
+            if (currentUser.admin) {
+                return <div>
+                    <button onClick={sendConfirmation}>Confirm Order</button>
+                </div>
+            }
+    }
 
     function sendConfirmation(){
         console.log("Send confirmation")

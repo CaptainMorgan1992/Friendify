@@ -6,7 +6,6 @@ import GlobalContext from "../GlobalContext.jsx";
 export default function ({orderFriendDetails}) {
     const {
         activity,
-        checkUser,
         submitOrder,
         time,
         additionalService,
@@ -25,7 +24,6 @@ export default function ({orderFriendDetails}) {
         getCurrentUser()
     }, [])
 
-    console.log(currentUser)
 
     return <>
        <div id={'confirmation-div'}>
@@ -34,25 +32,23 @@ export default function ({orderFriendDetails}) {
             <div id='confirmation-details'>
                 <h3 id={'booking-details'}>Booking details</h3>
                 <h4>Your friend: {name}</h4>
-                {activity.map(a => <h4>Your activity: {a}</h4>)}
+                <h4>Booked by: {getUser()}</h4>
+                <h4>Your activity: {lastPickedActivity()}</h4>
                 <h4>Location:{city}</h4>
-                {additionalService.map(s => <h4>Your additional service: {s}</h4>)}
-                {checkUser.map(user => <h4>Booked by {user}</h4>)}
+              <h4>Your additional service: {lastPickedAdditionalService()}</h4>
                 <h4>Total cost: {price + additionalServicePrice}kr </h4>
-               {time.map(clock => <h4>Time: {clock}:00</h4>)}
+                 <h4>Time: {time}:00</h4>
 				 <h4>Duration: 2 hours </h4>
                 <p>Need help?: Call 042-222-33-22</p>
 
                 <button onClick={confirmBooking}>Confirm booking</button>
-                <h4>Time until arrival:{timer} </h4>
+
                 <h4>{confirmedText}</h4>
                 <h4>{confirmed}</h4>
 
             </div>
 
         </div> </>
-
-
 
     function calcPrice(){
         let additionalServicePrice = 0;
@@ -64,10 +60,23 @@ export default function ({orderFriendDetails}) {
         console.log(additionalServicePrice)
 
         return { additionalServicePrice }
+    }
 
+    function getUser(){
+        const currentUserCopy = {...currentUser}
+        return currentUserCopy.name
+    }
+    function lastPickedTime(){
+        //return time
+    }
+    function lastPickedAdditionalService(){
+        return additionalService.slice(-1)
+    }
+    function lastPickedActivity(){
+          return activity.slice(-1)
     }
     function confirmBooking(){
-        submitOrder(currentUser,orderFriendDetails,activity,time)
+        submitOrder(currentUser,orderFriendDetails,activity,time,additionalService)
         console.log(submitOrder)
         setTimer(40)
         setConfirmed(<i class="fa-regular fa-face-smile fa-spin"></i>)
