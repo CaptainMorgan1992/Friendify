@@ -34,7 +34,7 @@ export const GlobalProvider = ({children}) => {
         const response = await fetch('/api/orders')
         const result = await response.json()
         setOrders(result)
-        console.log(result)
+        //console.log(result)
     }
 
     const checkAuth = async () => {
@@ -74,7 +74,7 @@ export const GlobalProvider = ({children}) => {
             body: JSON.stringify({_id,friend,user,activity,time,confirmed})
         })
         const result = response.json()
-        console.log(result)
+        //console.log(result)
     }
 
     const logout = async () => {
@@ -93,7 +93,7 @@ export const GlobalProvider = ({children}) => {
             body: JSON.stringify({name, email, phonenumber, password, city})
         })
         const result = await response.json()
-        console.log(result)
+        //console.log(result)
     }
 
 
@@ -120,19 +120,13 @@ export const GlobalProvider = ({children}) => {
         console.log(result)
     }
 
-    const deleteFriend = async (id) => {
-            const response = await fetch(`/api/friends/${id}`, {
-                method: "DELETE"
-            }).
-            then(response => {
-                if (!response.ok) {
-                    console.log("failed to delete item")
-                }
-                console.log('item deleted successfully')
-            }).
-            catch(error => {
-                console.log("Error deleting item")
+    const deleteFriend = async (friendDetails) => {
+            const response = await fetch(`/api/friends/${friendDetails._id}`, {
+                method: "DELETE",
+                body: JSON.stringify(friendDetails)
             })
+        const result = await response.json()
+        console.log(result, "hej", friendDetails._id)
     }
 
 

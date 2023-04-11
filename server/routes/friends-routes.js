@@ -49,8 +49,8 @@ friendsRoutes.patch('/:id', async(req, res) => {
     res.json({"updated": true})
 })
 
-friendsRoutes.delete('/:id', async (req,res)=>{
-  await mongoose.models.friends.findByIdAndDelete(req.params.id)
+friendsRoutes.delete('/:_id', async (req,res)=>{
+  await mongoose.models.friends.findByIdAndDelete(req.params._id)
     res.json({"deleted": true})
 })
 export default friendsRoutes
