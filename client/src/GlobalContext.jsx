@@ -54,6 +54,7 @@ export const GlobalProvider = ({children}) => {
         })
         console.log(response)
         void checkAuth()
+        void getCurrentUser()
     }
 
     const submitOrder = async (user,friend,activity,time) =>{
@@ -97,11 +98,13 @@ export const GlobalProvider = ({children}) => {
 
 
     const updateInfo = async (currentUser) => {
-        const response = await fetch(`/api/users/${currentUser.id}`, {
+        console.log(currentUser)
+        const response = await fetch(`/api/users/${currentUser._id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({currentUser})
+            body: JSON.stringify(currentUser)
         })
+        console.log(response)
         const result = await response.json()
         console.log(result)
     }
