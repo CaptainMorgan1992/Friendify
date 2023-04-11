@@ -9,7 +9,7 @@ import DeleteFriendComponent from "./DeleteFriendComponent.jsx";
 
 export default function ({friendDetails}) {
     const {name, age, picture, city, traits, price} = friendDetails;
-    const {auth, activity, selectFriend, additionalService,time} = useContext(GlobalContext)
+    const {auth, activity, selectFriend, additionalService,time,setTime} = useContext(GlobalContext)
 	const [message, setMessage] = useState(" ")
 
     const nav = useNavigate()
@@ -28,10 +28,13 @@ export default function ({friendDetails}) {
             <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
+                <SelectDate/>
                 <AdditionalServices/>
                 <ShowButton/>
             </div>
             <p id={"message-p"}>{message}</p>
+
+
         </div>
     }
 
@@ -51,25 +54,35 @@ export default function ({friendDetails}) {
                     <option>Dogge Doggelito</option>
                 </select>
             </div>
+
         </div>
 
     }
     function DropDownMenu(){
         return <div>
+            <label>Choose activity: </label>
             <select onChange={chooseActivity}>
                 <option>Select a value</option>
                 <option>Walk in a park</option>
                 <option>Swim in a park</option>
                 <option>Study programming</option>
             </select>
-            <select onChange={chooseTime}>
-                <option>Select a value</option>
-                <option>16.00</option>
-                <option>18.00</option>
-                <option>20.00</option>
-            </select>
+
+
         </div>
     }
+    function SelectDate(){
+        return <div>
+            <label htmlFor="meeting-time">Choose a time for your appointment:</label>
+
+            <input onChange={chooseTime} type="datetime-local" id="meeting-time"
+                   name="meeting-time" value={time}
+                   timezone="Europe/Stockholm"
+                   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+                   required />
+        </div>
+    }
+
     function chooseActivity(e){
         e.preventDefault()
         activity.push(e.target.value)
@@ -82,7 +95,7 @@ export default function ({friendDetails}) {
     }
     function chooseTime(e){
         e.preventDefault()
-        time.push(e.target.value)
+        setTime(e.target.value) //ACHTUNG: ONLY IN DB: Logs out the date 2 hours earlier(eg, 2022-12-12:12.00 = logs out: 2022-12-12:10.00)
         console.log(time)
     }
     function hireFriend(friendDetails){

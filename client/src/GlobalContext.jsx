@@ -5,7 +5,7 @@ export const GlobalProvider = ({children}) => {
 	const [orders, setOrders] = useState([])
 	const [selectFriend, setSelectFriend] = useState([])
     const [activity, setActivity] = useState([])
-    const [time, setTime] = useState([])
+    const [time, setTime] = useState({})
     const [friends, setFriends] = useState([])
     const [currentUser, setCurrentUser] = useState(null)
     const [checkUser, setCheckUser] = useState([])
@@ -43,7 +43,7 @@ export const GlobalProvider = ({children}) => {
         console.log('auth state: ', result)
         setAuth(result)
         console.log(result)
-        checkUser.push(result.name)
+        //checkUser.push(result.name) // Fix with currentUser
     }
 
     const submitLogin = async (email, password) => {

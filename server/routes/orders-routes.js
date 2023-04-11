@@ -7,7 +7,7 @@ const orderSchema = new Schema({
     friend: [],
     user: [],
     activity: [],
-    time: [],
+    time: Date,  //Logs out the date 2 hours earlier (eg, 2022-12-12:12.00 = logs out: 2022-12-12:10.00)
     additionalService: [],
     confirmed: {type:Boolean, default:false}
 

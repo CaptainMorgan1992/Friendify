@@ -11,13 +11,11 @@ export default function ({confirmOrder}){
 
     return <div id={'detailed-friend-card'} >
         <p id="priceParagraph">Duration: 2 hours</p>
-        <p id="traitsParagraph">Activity:{activity}</p>
-        <p id="traitsParagraph">Extra Service: {additionalService}</p>
-        <p id="traitsParagraph">Time: {time}</p>
+        <p id="traitsParagraph">Activities:{activity[activity.length-1]}</p>
+        <p id="traitsParagraph">Extra Services: {additionalService[additionalService.length-1]}</p>
+        <p id="traitsParagraph">Date & Time: {time}</p>
         <p id="traitsParagraph">orderID: {_id}</p>
         <p id="traitsParagraph">Accepted: {adminConfirm.toString()}</p>
-        <p id="traitsParagraph">Denied: {sendDeniedOrder()}</p>
-
         <ul>
             {friend.map((friendItem) => (
                 <li key={friendItem._id}>
@@ -43,27 +41,18 @@ export default function ({confirmOrder}){
 
             </ul>
         </ul>
-        {ConfirmAndDenyButtons()}
+        {ConfirmButton()}
     </div>
 
 
-    function ConfirmAndDenyButtons(){
+    function ConfirmButton(){
             if (currentUser.admin) {
                 return <div>
                     <button onClick={sendConfirmation}>Confirm Order</button>
-                    <button onClick={sendDeniedOrder}>Deny Order</button>
                 </div>
             }
     }
 
-    /*function sendDeniedOrder(){
-        setDeniedOrder(true)
-
-        if (setDeniedOrder){
-            console.log(deniedOrder.toString())
-            return deniedOrder.toString()
-        }
-    }*/
     function sendConfirmation(){
         console.log("Send confirmation")
         setAdminConfirm(true)
