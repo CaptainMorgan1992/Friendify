@@ -154,7 +154,7 @@ export const GlobalProvider = ({children}) => {
             checkUser,
             setCheckUser,
             register,
-			registerFriend,
+			registerFriends,
             submitOrder,
             adminConfirmOrder,
 			additionalService,
