@@ -39,10 +39,10 @@ export default function ({friendDetails}) {
     }
 
     function AdditionalServices() {
-        const currentUserCopy = {...currentUser}
-        if (!auth.loggedIn || currentUserCopy.admin) {
+        // const currentUserCopy = {...currentUser}
+        if (auth.email === "johnnyjohnson@example.com") {
             return null
-        } else {
+        } else if (auth.loggedIn){
             return <div id={'additional-services-div'}>
                 <div id={"additional-services-titles"}>
                     <h5>Add an additional service (+100kr) </h5>
@@ -64,10 +64,10 @@ export default function ({friendDetails}) {
         }
     }
     function DropDownMenu() {
-        const currentUserCopy = {...currentUser}
-        if (!auth.loggedIn || currentUserCopy.admin) {
+        //const currentUserCopy = {...currentUser}
+        if (auth.email === "johnnyjohnson@example.com") {
             return null
-        } else {
+        } else if (auth.loggedIn) {
             return <div id={"activity-div"}>
                 <label>Choose activity: </label>
                 <select onChange={chooseActivity}>
@@ -88,12 +88,12 @@ export default function ({friendDetails}) {
     }
 
    function SelectDate(){
-       const currentUserCopy = {...currentUser}
-       if (currentUserCopy.admin || !auth.loggedIn )
+      // const currentUserCopy = {...currentUser}
+       if (auth.email ===  "johnnyjohnson@example.com")
        {
             return null
         }
-        else {
+        else if (auth.loggedIn){
             return <div id={'choose-time'}>
                 <label  htmlFor="meeting-time">Choose a time for your appointment:</label>
 
@@ -135,15 +135,16 @@ export default function ({friendDetails}) {
 
 
     function ShowButton() {
-        const currentUserCopy = {...currentUser}
-        if (currentUserCopy.admin && auth.loggedIn) {
+        //const currentUserCopy = {...currentUser}
+        // if if (currentUserCopy.admin || !auth.loggedIn )
+        if ( auth.email === "johnnyjohnson@example.com" ) {
             return <div id="button-div">
                 <form onSubmit={deleteFriendFromDatabase}>
                     <button type={'submit'} className={"booking-confirmation-button"}>Delete Friend</button>
                 </form>
 
             </div>
-        } else {
+        } else  {
             return    <div id="button-div">
                         <button  onClick={e => hireFriend(friendDetails)} className={"booking-confirmation-button"}>Hire friend</button>
                 </div>
