@@ -2,7 +2,6 @@ import {Link} from "react-router-dom";
 import LogoutButton from "./LogoutButton.jsx";
 import {useContext} from "react";
 import GlobalContext from "../GlobalContext.jsx";
-import AddFriendButton from "./AddFriendButton.jsx";
 
 
 export default function (){
@@ -60,7 +59,7 @@ export default function (){
     function ShowAddFriendButton() {
         if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
             return <Link to="/addfriend">
-             <AddFriendButton/>
+                <button>Add friend</button>
             </Link>
         }
         else return null

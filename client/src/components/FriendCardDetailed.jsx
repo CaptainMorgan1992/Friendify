@@ -7,8 +7,8 @@ import "../styles/bookingconfirmation.css"
 
 
 export default function ({friendDetails}) {
-    const {_id, name, age, picture, city, traits, price} = friendDetails;
-    const {auth, activity, selectFriend, additionalService, deleteFriend, friends, loadFriends,time,setTime} = useContext(GlobalContext)
+    const {name, age, picture, city, traits, price} = friendDetails;
+    const {auth, activity, selectFriend, additionalService, deleteFriend,time,setTime, currentUser} = useContext(GlobalContext)
 	const [message, setMessage] = useState(" ")
 
     const nav = useNavigate()
@@ -38,7 +38,8 @@ export default function ({friendDetails}) {
     }
 
     function AdditionalServices() {
-        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+        const currentUserCopy = {...currentUser}
+        if (currentUserCopy.admin && auth.loggedIn) {
             return null
         } else {
             return <div id={'additional-services-div'}>
@@ -62,7 +63,8 @@ export default function ({friendDetails}) {
         }
     }
     function DropDownMenu() {
-        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+        const currentUserCopy = {...currentUser}
+        if (currentUserCopy.admin && auth.loggedIn) {
             return null
         } else {
             return <div id={"activity-div"}>
@@ -85,7 +87,8 @@ export default function ({friendDetails}) {
     }
 
    function SelectDate(){
-        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+       const currentUserCopy = {...currentUser}
+       if (currentUserCopy.admin && auth.loggedIn) {
             return null
         }
         else {
@@ -94,8 +97,6 @@ export default function ({friendDetails}) {
 
                 <input onChange={chooseTime} type="datetime-local" id="meeting-time"
                        name="meeting-time" value={time}
-                       timezone="Europe/Stockholm"
-                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
                        required/>
             </div>
         }
@@ -130,7 +131,8 @@ export default function ({friendDetails}) {
 
 
     function ShowButton() {
-        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+        const currentUserCopy = {...currentUser}
+        if (currentUserCopy.admin && auth.loggedIn) {
             return <div id="button-div">
                 <form onSubmit={deleteFriendFromDatabase}>
                     <button type={'submit'} className={"booking-confirmation-button"}>Delete Friend</button>
