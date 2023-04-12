@@ -41,9 +41,9 @@ export default function ({friendDetails}) {
         if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
             return null
         } else {
-            return <div>
+            return <div id={'additional-services-div'}>
                 <div id={"additional-services-titles"}>
-                    <h4>Add an additional service (+100kr) </h4>
+                    <h5>Add an additional service (+100kr) </h5>
                     <h5>Your friend can bring:</h5>
                 </div>
                 <div id={"additional-services-option"}>
@@ -65,7 +65,7 @@ export default function ({friendDetails}) {
         if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
             return null
         } else {
-            return <div>
+            return <div id={"activity-div"}>
                 <label>Choose activity: </label>
                 <select onChange={chooseActivity}>
                     <option>Select a value</option>
@@ -89,8 +89,8 @@ export default function ({friendDetails}) {
             return null
         }
         else {
-            return <div>
-                <label htmlFor="meeting-time">Choose a time for your appointment:</label>
+            return <div id={'choose-time'}>
+                <label  htmlFor="meeting-time">Choose a time for your appointment:</label>
 
                 <input onChange={chooseTime} type="datetime-local" id="meeting-time"
                        name="meeting-time" value={time}
