@@ -86,6 +86,12 @@ margin: 1%;
     margin: 1.5%;
 }
 
+#additional-services-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 #additional-services-option {
     margin:5%;
@@ -96,6 +102,36 @@ margin: 1%;
     text-align: center;
 }
 
+#activity-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+#activity-div > label {
+    font-size: 0.9rem;
+}
+
+#meeting-time {
+    width: 80%;
+    height: 1.5rem;
+    font-size: 0.8rem;
+}
+
+#choose-time {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+#choose-time > label {
+    text-align: center;
+    font-size: 0.9rem;
+}
 
 
 

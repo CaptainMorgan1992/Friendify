@@ -8,7 +8,7 @@ import "../styles/bookingconfirmation.css"
 
 export default function ({friendDetails}) {
     const {_id, name, age, picture, city, traits, price} = friendDetails;
-    const {auth, activity, selectFriend, additionalService,time, deleteFriend, friends, loadFriends} = useContext(GlobalContext)
+    const {auth, activity, selectFriend, additionalService, deleteFriend, friends, loadFriends,time,setTime} = useContext(GlobalContext)
 	const [message, setMessage] = useState(" ")
 
     const nav = useNavigate()
@@ -27,53 +27,80 @@ export default function ({friendDetails}) {
             <p className="traitsParagraph">{traits[2]} </p>
             <div id="standing-area">
                 <DropDownMenu/>
+                <SelectDate/>
                 <AdditionalServices/>
                 <ShowButton/>
             </div>
             <p id={"message-p"}>{message}</p>
+
+
         </div>
     }
 
     function AdditionalServices() {
-        return <div>
-            <div id={"additional-services-titles"}>
-                <h4>Add an additional service (+100kr) </h4>
-                <h5>Your friend can bring:</h5>
-            </div>
-            <div id={"additional-services-option"}>
-                <select onChange={chooseAdditionalService}>
-                    <option>Select a value</option>
-                    <option>Flowers</option>
-                    <option>A cup of coffee</option>
-                    <option>A dog</option>
-                    <option>A grandma</option>
-                    <option>Dogge Doggelito</option>
-                </select>
-            </div>
-        </div>
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        } else {
+            return <div id={'additional-services-div'}>
+                <div id={"additional-services-titles"}>
+                    <h5>Add an additional service (+100kr) </h5>
+                    <h5>Your friend can bring:</h5>
+                </div>
+                <div id={"additional-services-option"}>
+                    <select onChange={chooseAdditionalService}>
+                        <option>Select a value</option>
+                        <option>Flowers</option>
+                        <option>A cup of coffee</option>
+                        <option>A dog</option>
+                        <option>A grandma</option>
+                        <option>Dogge Doggelito</option>
+                    </select>
+                </div>
 
+            </div>
+
+        }
     }
-    function DropDownMenu(){
-        return <div>
-            <select onChange={chooseActivity}>
-                <option>Select a value</option>
-                <option>Walk in a park</option>
-                <option>Swim in a park</option>
-                <option>Study programming</option>
-            </select>
-            <select onChange={chooseTime}>
-                <option>Select a value</option>
-                <option>16.00</option>
-                <option>18.00</option>
-                <option>20.00</option>
-            </select>
-        </div>
+    function DropDownMenu() {
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        } else {
+            return <div id={"activity-div"}>
+                <label>Choose activity: </label>
+                <select onChange={chooseActivity}>
+                    <option>Select a value</option>
+                    <option>Walk in a park</option>
+                    <option>Swim in a park</option>
+                    <option>Study programming</option>
+                </select>
+
+
+            </div>
+        }
     }
     function  deleteFriendFromDatabase  (e) {
         e.preventDefault()
         deleteFriend(friendDetails)
         handleDeletion()
     }
+
+   function SelectDate(){
+        if(auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        }
+        else {
+            return <div id={'choose-time'}>
+                <label  htmlFor="meeting-time">Choose a time for your appointment:</label>
+
+                <input onChange={chooseTime} type="datetime-local" id="meeting-time"
+                       name="meeting-time" value={time}
+                       timezone="Europe/Stockholm"
+                       pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}"
+                       required/>
+            </div>
+        }
+    }
+
     function chooseActivity(e){
         e.preventDefault()
         activity.push(e.target.value)
@@ -86,7 +113,7 @@ export default function ({friendDetails}) {
     }
     function chooseTime(e){
         e.preventDefault()
-        time.push(e.target.value)
+        setTime(e.target.value) //ACHTUNG: ONLY IN DB: Logs out the date 2 hours earlier(eg, 2022-12-12:12.00 = logs out: 2022-12-12:10.00)
         console.log(time)
     }
     function hireFriend(friendDetails){
@@ -108,7 +135,7 @@ export default function ({friendDetails}) {
                 <form onSubmit={deleteFriendFromDatabase}>
                     <button type={'submit'} className={"booking-confirmation-button"}>Delete Friend</button>
                 </form>
-                <p>{message}</p>
+
             </div>
         } else {
             return    <div id="button-div">

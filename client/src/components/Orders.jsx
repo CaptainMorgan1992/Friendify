@@ -9,12 +9,29 @@ export default function () {
     useEffect( () => {
         getCurrentUser()
     }, [])
+
+
     return <div>
-      <h2>Orders</h2>
+      <h2><ShowTitle/></h2>
         {getUnconfirmedOrders()}
         {getUsersConfirmedOrders()}
     </div>
 
+
+    function ShowTitle() {
+        const currentUserCopy = {...currentUser}
+        if (currentUserCopy.admin && auth.loggedIn) {
+            return  <div>
+                <h3>{currentUserCopy.name}</h3>
+                <h1>Unconfirmed orders</h1>
+            </div>
+        } else if(!currentUserCopy.admin && auth.loggedIn){
+            return  <div>
+                <h3>Welcome: {currentUserCopy.name}</h3>
+                <h1>My orders</h1>
+            </div>
+        }
+    }
 function getUnconfirmedOrders(){
         const filteredOrders = orders.filter(order => {
             if (order.confirmed === false &&

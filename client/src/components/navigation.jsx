@@ -9,15 +9,12 @@ export default function (){
     const {auth} = useContext(GlobalContext)
 
     return <nav id={"navigation"}>
-        <Link to={'/policy'}>
-        <button>Our policy</button>
-        </Link>
-        <Link to={'/friends'}>
-        <button>Rent a friend</button>
-        </Link>
+        <PolicyButton/>
+        <RentAFriendButton/>
+        <ShowAddFriendButton/>
         <ShowProfile/>
         <ShowLogoutButton/>
-        <ShowAddFriendButton/>
+
     </nav>
 
     function ShowLogoutButton() {
@@ -35,6 +32,29 @@ export default function (){
             </Link>
         </>
 
+    }
+
+    function RentAFriendButton() {
+        if (auth.loggedIn && auth.email === "johnnyjohnson@example.com") {
+            return <Link to={'/friends'}>
+                <button>Delete a friend</button>
+            </Link>
+        } else {
+            return <Link to={'/friends'}>
+                <button>Rent a friend</button>
+            </Link>
+        }
+    }
+
+    function PolicyButton() {
+        if (auth.loggedIn === true && auth.email === "johnnyjohnson@example.com") {
+            return null
+        }
+        else {
+            return <Link to={'/policy'}>
+                <button>Our policy</button>
+            </Link>
+        }
     }
 
     function ShowAddFriendButton() {
