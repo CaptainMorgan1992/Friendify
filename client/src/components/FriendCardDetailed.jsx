@@ -38,8 +38,7 @@ export default function ({friendDetails}) {
     }
 
     function AdditionalServices() {
-        const currentUserCopy = {...currentUser}
-        if (currentUserCopy.admin && auth.loggedIn) {
+        if (!auth.loggedIn) {
             return null
         } else {
             return <div id={'additional-services-div'}>
@@ -63,8 +62,7 @@ export default function ({friendDetails}) {
         }
     }
     function DropDownMenu() {
-        const currentUserCopy = {...currentUser}
-        if (currentUserCopy.admin && auth.loggedIn) {
+        if (!auth.loggedIn) {
             return null
         } else {
             return <div id={"activity-div"}>
@@ -87,8 +85,7 @@ export default function ({friendDetails}) {
     }
 
    function SelectDate(){
-       const currentUserCopy = {...currentUser}
-       if (currentUserCopy.admin && auth.loggedIn) {
+       if (!auth.loggedIn) {
             return null
         }
         else {
@@ -122,6 +119,8 @@ export default function ({friendDetails}) {
             selectFriend.push(friendDetails)
             console.log(selectFriend)
             nav('/userconfirmation')
+        } else {
+            nav('/login')
         }
     }
 
