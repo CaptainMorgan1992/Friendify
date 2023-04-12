@@ -16,18 +16,18 @@ export default function ({confirmOrder}){
         <p id="traitsParagraph">Date & Time: {time}</p>
         <p id="traitsParagraph">orderID: {_id}</p>
         <p id="traitsParagraph">Accepted: {adminConfirm.toString()}</p>
-        <ul>
+        <ul className={'placedOrder'}>
             {friend.map((friendItem) => (
                 <li key={friendItem._id}>
                     <h3>Friend</h3>
+                    <img id={'detailedPicture'} src={friendItem.picture} alt={friendItem.name} />
                     <p>Name: {friendItem.name}</p>
                     <p>Price: {friendItem.price}</p>
                     <p>City: {friendItem.city}</p>
-                    <p>FriendID: {friendItem._id}</p>
-                    <img src={friendItem.picture} alt={friendItem.name} />
+
                 </li>
             ))}
-            <ul>
+            <ul className={'placedOrder'}>
                 {user && user.map((userItem) => (
                     <li key={userItem && userItem._id}>
                         <h3>User</h3>
@@ -35,7 +35,6 @@ export default function ({confirmOrder}){
                         <p>Email: {userItem && userItem.email}</p>
                         <p>Phonenumber: {userItem && userItem.phonenumber}</p>
                         <p>City: {userItem && userItem.city}</p>
-                        <p>UserID: {userItem && userItem._id}</p>
                     </li>
                 ))}
 

@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border: 1px solid #e0d6fd;
     margin: 5% 18%;
     padding: 1%;
@@ -131,6 +132,15 @@ margin: 1%;
 #choose-time > label {
     text-align: center;
     font-size: 0.9rem;
+}
+
+.placedOrder {
+    list-style: none;
+    margin-bottom: 5%;
+}
+
+.placedOrder li {
+    margin: 5%;
 }
 
 
