@@ -11,6 +11,7 @@ export default function ({friendDetails}) {
     const {auth, activity, selectFriend, additionalService, deleteFriend,time,setTime, currentUser} = useContext(GlobalContext)
 	const [message, setMessage] = useState(" ")
 
+
     const nav = useNavigate()
     //console.log(_id)
     return <HireAFriend/>
@@ -38,7 +39,8 @@ export default function ({friendDetails}) {
     }
 
     function AdditionalServices() {
-        if (!auth.loggedIn) {
+        const currentUserCopy = {...currentUser}
+        if (!auth.loggedIn || currentUserCopy.admin) {
             return null
         } else {
             return <div id={'additional-services-div'}>
@@ -62,7 +64,8 @@ export default function ({friendDetails}) {
         }
     }
     function DropDownMenu() {
-        if (!auth.loggedIn) {
+        const currentUserCopy = {...currentUser}
+        if (!auth.loggedIn || currentUserCopy.admin) {
             return null
         } else {
             return <div id={"activity-div"}>
@@ -85,7 +88,9 @@ export default function ({friendDetails}) {
     }
 
    function SelectDate(){
-       if (!auth.loggedIn) {
+       const currentUserCopy = {...currentUser}
+       if (currentUserCopy.admin || !auth.loggedIn )
+       {
             return null
         }
         else {
