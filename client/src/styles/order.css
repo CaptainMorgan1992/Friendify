@@ -1,0 +1,20 @@
+#settings-button {
+    background-color: rgba(176, 194, 255, 0.72);
+    padding: .5rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    border: 0px solid white;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.09);
+}
+
+.profile-name {
+    display: flex;
+    justify-content: center;
+    color: #525050;
+}
+
+.profile-order{
+    display: flex;
+    justify-content: center;
+    color: #525050;
+}

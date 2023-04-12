@@ -3,6 +3,15 @@
     margin: 0;
     padding: 0;
     font-weight: 300;
+
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 5%;
 }
 
 input {
@@ -11,12 +20,13 @@ input {
     border-radius: 3px;
     font-family: "Source Sans Pro", sans-serif;
     padding: 10px 15px;
-    margin: 0 auto 10px auto;
+    margin: 2%;
     display: block;
     text-align: center;
     font-size: 18px;
     color: black;
     font-weight: 300;
+
 }
 
 form button {
@@ -31,4 +41,26 @@ form button {
 button:hover {
     cursor: pointer;
 }
+
+form p {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}
+
+#register-link {
+    text-decoration: none;
+    color: #92a7ea;
+}
+#register-link:hover {
+    cursor: pointer;
+}
+
+#title-register-page{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+
 

@@ -3,8 +3,9 @@ import GlobalContext from "../GlobalContext.jsx";
 
 export default function ({confirmOrder}){
     const {friend,user,activity,time,confirmed,_id, additionalService} = confirmOrder;
-    const {adminConfirmOrder,orders,getCurrentUser,currentUser,auth, deniedOrder, setDeniedOrder} = useContext(GlobalContext)
+    const {adminConfirmOrder,getCurrentUser,currentUser} = useContext(GlobalContext)
     const [adminConfirm, setAdminConfirm] = useState(confirmed)
+   
     useEffect( () => {
         getCurrentUser()
     }, [])

@@ -22,13 +22,13 @@ export default function () {
         const currentUserCopy = {...currentUser}
         if (currentUserCopy.admin && auth.loggedIn) {
             return  <div>
-                <h3>{currentUserCopy.name}</h3>
-                <h1>Unconfirmed orders</h1>
+                <h3 className={'profile-name'}>{currentUserCopy.name}</h3>
+                <h1 className={'profile-order'}>Unconfirmed orders</h1>
             </div>
         } else if(!currentUserCopy.admin && auth.loggedIn){
             return  <div>
-                <h3>Welcome: {currentUserCopy.name}</h3>
-                <h1>My orders</h1>
+                <h3 className={'profile-name'}>Welcome {currentUserCopy.name}</h3>
+                <h1 className={'profile-order'}>My orders</h1>
             </div>
         }
     }

@@ -1,6 +1,6 @@
 import GlobalContext from "../GlobalContext.jsx";
 import {useContext, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function () {
     const [email, setEmail] = useState("")
@@ -30,5 +30,6 @@ export default function () {
                onChange={e => setPassword(e.target.value)}/>
 
         <button>Log In</button>
+       <p>Dont have an account?<Link id={'register-link'} to={'/register'}> Register here </Link> </p>
     </form>
 }
