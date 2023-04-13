@@ -20,7 +20,7 @@ export default function () {
 
     function ShowTitle() {
         const currentUserCopy = {...currentUser}
-        if (currentUserCopy.admin && auth.loggedIn) {
+        if (currentUserCopy && currentUserCopy.admin && auth.loggedIn) {
             return  <div>
                 <h3 className={'profile-name'}>{currentUserCopy.name}</h3>
                 <h1 className={'profile-order'}>Unconfirmed orders</h1>
