@@ -46,7 +46,7 @@ export default function ({confirmOrder}){
 
 
     function ConfirmButton(){
-            if (currentUser.admin) {
+            if (currentUser && currentUser.admin) {
                 return <div>
                     <button onClick={sendConfirmation}>Confirm Order</button>
                 </div>

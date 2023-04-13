@@ -25,7 +25,7 @@ export default function () {
                 <h3 className={'profile-name'}>{currentUserCopy.name}</h3>
                 <h1 className={'profile-order'}>Unconfirmed orders</h1>
             </div>
-        } else if(!currentUserCopy.admin && auth.loggedIn){
+        } else if(currentUserCopy && !currentUserCopy.admin && auth.loggedIn){
             return  <div>
                 <h3 className={'profile-name'}>Welcome {currentUserCopy.name}</h3>
                 <h1 className={'profile-order'}>My orders</h1>
@@ -36,7 +36,7 @@ function getUnconfirmedOrders(){
         const filteredOrders = orders.filter(order => {
             if (order.confirmed === false &&
                 auth.loggedIn &&
-                currentUser.admin) {
+               currentUser && currentUser.admin) {
                 return true;
             }
         });
@@ -49,7 +49,7 @@ function getUnconfirmedOrders(){
                 return (
                     order.confirmed === true &&
                     auth.loggedIn &&
-                    !currentUser.admin &&
+                  currentUser && !currentUser.admin &&
                     order.user.some((user) => user._id === currentUser._id)
                 );
             });
